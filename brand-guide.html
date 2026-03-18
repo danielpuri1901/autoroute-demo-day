@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vectora — Brand Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #7C3AED;
+    --purple-light: #A78BFA;
+    --purple-dark: #5B21B6;
+    --purple-50: #F5F3FF;
+    --purple-100: #EDE9FE;
+    --amber: #F59E0B;
+    --amber-light: #FCD34D;
+    --text: #1A1025;
+    --text-body: #4B3F5E;
+    --text-muted: #8B7FA3;
+    --bg: #FDFCFB;
+    --surface: #F5F3F0;
+    --border: #E6E1DC;
+    --charcoal: #2D2438;
+    --success: #059669;
+    --error: #DC2626;
+    --warning: #D97706;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 0 40px; }
+
+  /* ── Hero ── */
+  .hero {
+    padding: 80px 0 60px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--purple); margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 64px; font-weight: 900;
+    color: var(--text); letter-spacing: -0.03em;
+    line-height: 1; margin-bottom: 16px;
+  }
+  .hero p {
+    font-size: 18px; color: var(--text-muted);
+    max-width: 480px; margin: 0 auto;
+  }
+
+  /* ── Sections ── */
+  section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--purple); margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 32px; font-weight: 800;
+    color: var(--text); letter-spacing: -0.02em;
+    margin-bottom: 32px; line-height: 1.2;
+  }
+
+  /* ── Name Options ── */
+  .name-cards { display: flex; flex-direction: column; gap: 32px; }
+  .name-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 16px; padding: 40px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+    align-items: center;
+  }
+  .name-card.recommended { border-color: var(--purple-light); box-shadow: 0 0 0 1px var(--purple-light); }
+  .name-card .info .label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--purple); margin-bottom: 8px;
+  }
+  .rec-badge {
+    display: inline-block; background: var(--purple); color: #fff;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+    padding: 2px 8px; border-radius: 4px; margin-left: 8px;
+    vertical-align: middle;
+  }
+  .name-card .info h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 28px; font-weight: 800; color: var(--text);
+    margin-bottom: 4px;
+  }
+  .name-card .info .tagline {
+    font-size: 16px; color: var(--purple-light);
+    font-style: italic; margin-bottom: 12px;
+  }
+  .name-card .info .desc {
+    font-size: 14px; color: var(--text-muted); line-height: 1.7;
+  }
+  .logo-box {
+    display: flex; align-items: center; justify-content: center;
+    background: var(--surface); border-radius: 12px;
+    min-height: 180px; padding: 24px;
+  }
+  .logo-box.dark {
+    background: var(--text);
+  }
+
+  /* ── Color Palette ── */
+  .palette-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  }
+  .palette-row { display: flex; gap: 16px; margin-bottom: 16px; }
+  .swatch {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden; cursor: pointer;
+    transition: transform 0.15s;
+  }
+  .swatch:hover { transform: translateY(-2px); }
+  .swatch-color { height: 80px; }
+  .swatch-info { padding: 12px 14px; }
+  .swatch-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px; font-weight: 700; color: var(--text);
+  }
+  .swatch-hex {
+    font-size: 12px; color: var(--text-muted);
+    font-family: 'DM Sans', monospace;
+  }
+  .swatch-copied {
+    font-size: 11px; color: var(--success); font-weight: 600;
+    display: none;
+  }
+
+  .palette-section-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px; font-weight: 700; color: var(--text-muted);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin: 32px 0 12px;
+  }
+  .palette-section-label:first-child { margin-top: 0; }
+
+  /* ── Typography ── */
+  .type-example {
+    padding: 24px 0; border-bottom: 1px solid var(--border);
+  }
+  .type-example:last-child { border-bottom: none; }
+  .type-meta {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 4px;
+  }
+  .type-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px; font-weight: 600; color: var(--text-muted);
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .type-spec {
+    font-size: 12px; color: var(--text-muted); font-family: 'DM Sans', monospace;
+  }
+  .type-sample-h1 { font-family: 'Outfit', sans-serif; font-size: 48px; font-weight: 900; color: var(--text); letter-spacing: -0.03em; line-height: 1.1; }
+  .type-sample-h2 { font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 800; color: var(--text); letter-spacing: -0.02em; line-height: 1.2; }
+  .type-sample-h3 { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; }
+  .type-sample-h4 { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 700; color: var(--text); line-height: 1.4; }
+  .type-sample-body { font-family: 'DM Sans', sans-serif; font-size: 16px; color: var(--text-body); line-height: 1.6; }
+  .type-sample-caption { font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+  /* ── Voice ── */
+  .voice-principles {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    margin-bottom: 40px;
+  }
+  .voice-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px;
+  }
+  .voice-card h4 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px; font-weight: 800; color: var(--text);
+    margin-bottom: 8px;
+  }
+  .voice-card p { font-size: 14px; color: var(--text-muted); }
+
+  .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .do-col, .dont-col {
+    background: #fff; border-radius: 12px; padding: 24px;
+    border: 1px solid var(--border);
+  }
+  .do-col { border-top: 3px solid var(--success); }
+  .dont-col { border-top: 3px solid var(--error); }
+  .do-col h4, .dont-col h4 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px; font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .do-col h4 { color: var(--success); }
+  .dont-col h4 { color: var(--error); }
+  .do-col li, .dont-col li {
+    font-size: 14px; color: var(--text-body);
+    margin-bottom: 10px; line-height: 1.5;
+    list-style: none; padding-left: 20px; position: relative;
+  }
+  .do-col li::before { content: "+"; position: absolute; left: 0; color: var(--success); font-weight: 700; }
+  .dont-col li::before { content: "\00d7"; position: absolute; left: 2px; color: var(--error); font-weight: 700; font-size: 16px; }
+
+  .copy-examples { margin-top: 32px; }
+  .copy-example {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px 24px; margin-bottom: 12px;
+  }
+  .copy-example .context {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px; font-weight: 700; color: var(--purple);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .copy-example .copy {
+    font-size: 15px; color: var(--text); line-height: 1.5;
+  }
+
+  /* ── Positioning ── */
+  .positioning-box {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 16px; padding: 40px;
+    border-left: 4px solid var(--purple);
+  }
+  .positioning-box blockquote {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 20px; color: var(--text); line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* ── Visual Direction ── */
+  .component-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+  }
+  .component-box {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 12px; padding: 32px;
+  }
+  .component-box h4 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px; font-weight: 700; color: var(--text);
+    margin-bottom: 16px;
+  }
+  .demo-btn {
+    display: inline-block; padding: 10px 24px;
+    border-radius: 10px; font-family: 'Outfit', sans-serif;
+    font-size: 14px; font-weight: 600; border: none; cursor: pointer;
+    margin-right: 8px; margin-bottom: 8px;
+  }
+  .demo-btn.primary { background: var(--purple); color: #fff; }
+  .demo-btn.secondary { background: var(--purple-50); color: var(--purple); }
+  .demo-btn.ghost { background: transparent; color: var(--text-body); border: 1px solid var(--border); }
+  .demo-input {
+    width: 100%; padding: 10px 14px;
+    border: 1px solid var(--border); border-radius: 10px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px;
+    color: var(--text); background: var(--bg);
+    margin-bottom: 8px; outline: none;
+  }
+  .demo-input:focus { border-color: var(--purple); box-shadow: 0 0 0 3px rgba(124,58,237,0.1); }
+  .demo-card-inner {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px;
+  }
+  .demo-card-inner h5 {
+    font-family: 'Outfit', sans-serif; font-size: 15px;
+    font-weight: 700; color: var(--text); margin-bottom: 6px;
+  }
+  .demo-card-inner p { font-size: 13px; color: var(--text-muted); }
+
+  .spec-list {
+    list-style: none; padding: 0;
+  }
+  .spec-list li {
+    font-size: 14px; color: var(--text-body);
+    padding: 8px 0; border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between;
+  }
+  .spec-list li:last-child { border-bottom: none; }
+  .spec-list li span { color: var(--text-muted); font-size: 13px; font-family: 'DM Sans', monospace; }
+
+  /* ── Footer ── */
+  .guide-footer {
+    padding: 40px 0; text-align: center;
+    font-size: 13px; color: var(--text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .name-card { grid-template-columns: 1fr; }
+    .palette-grid { grid-template-columns: repeat(2, 1fr); }
+    .voice-principles { grid-template-columns: 1fr; }
+    .component-grid { grid-template-columns: 1fr; }
+    .do-dont { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-label">Brand Guide</div>
+    <h1 style="color: var(--purple);">Vectora</h1>
+    <p>Route optimization that learns how your operation actually works.</p>
+  </div>
+
+  <!-- ═══ 1. NAME OPTIONS ═══ -->
+  <section>
+    <div class="section-label">01 &mdash; Identity</div>
+    <div class="section-title">Name Options</div>
+
+    <div class="name-cards">
+
+      <!-- Vectora -->
+      <div class="name-card recommended">
+        <div class="info">
+          <div class="label">Option A <span class="rec-badge">Frontrunner</span></div>
+          <h3>Vectora</h3>
+          <div class="tagline">"Routes that learn."</div>
+          <div class="desc">From <strong>vector</strong> &mdash; direction, precision, mathematical movement. The "-a" suffix adds fluidity and warmth. Sharp, technical, premium. Feels like a company that knows exactly where it's going.</div>
+        </div>
+        <div class="logo-box">
+          <svg width="240" height="140" viewBox="0 0 240 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Mark: abstract V with route branches and node -->
+            <g transform="translate(60, 70)">
+              <circle cx="0" cy="0" r="32" fill="none" stroke="#7C3AED" stroke-width="0.7" opacity="0.12" stroke-dasharray="4 5"/>
+              <!-- V shape as converging routes -->
+              <path d="M-28 -22 L0 18" stroke="url(#vGrad1)" stroke-width="3.5" stroke-linecap="round"/>
+              <path d="M28 -22 L0 18" stroke="url(#vGrad1)" stroke-width="3.5" stroke-linecap="round"/>
+              <!-- Route branches from tips -->
+              <path d="M-28 -22 L-36 -30" stroke="#A78BFA" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+              <path d="M28 -22 L36 -28" stroke="#A78BFA" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+              <path d="M0 18 L0 28" stroke="#A78BFA" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+              <!-- Waypoint nodes -->
+              <circle cx="-14" cy="-2" r="3" fill="#A78BFA" opacity="0.5"/>
+              <circle cx="14" cy="-2" r="3" fill="#A78BFA" opacity="0.5"/>
+              <!-- Origin node at convergence -->
+              <circle cx="0" cy="18" r="5" fill="#7C3AED"/>
+              <circle cx="0" cy="18" r="8" fill="none" stroke="#7C3AED" stroke-width="1.5" opacity="0.3"/>
+            </g>
+            <!-- Wordmark -->
+            <text x="150" y="65" font-family="Outfit, sans-serif" font-size="30" font-weight="800" fill="#1A1025" letter-spacing="-0.5">Vectora</text>
+            <text x="150" y="82" font-family="DM Sans, sans-serif" font-size="10" fill="#8B7FA3" letter-spacing="0.5">Routes that learn.</text>
+            <defs>
+              <linearGradient id="vGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#7C3AED"/>
+                <stop offset="100%" stop-color="#A78BFA"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Vectora dark variant -->
+      <div class="name-card">
+        <div class="info">
+          <div class="label">Vectora &mdash; Dark variant</div>
+          <h3 style="color: var(--purple);">On dark backgrounds</h3>
+          <div class="tagline">"For hero sections, decks, and overlays"</div>
+          <div class="desc">The mark and wordmark invert cleanly. Purple remains the primary color; the wordmark goes white.</div>
+        </div>
+        <div class="logo-box dark">
+          <svg width="240" height="140" viewBox="0 0 240 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(60, 70)">
+              <circle cx="0" cy="0" r="32" fill="none" stroke="#A78BFA" stroke-width="0.7" opacity="0.15" stroke-dasharray="4 5"/>
+              <path d="M-28 -22 L0 18" stroke="url(#vGrad2)" stroke-width="3.5" stroke-linecap="round"/>
+              <path d="M28 -22 L0 18" stroke="url(#vGrad2)" stroke-width="3.5" stroke-linecap="round"/>
+              <path d="M-28 -22 L-36 -30" stroke="#A78BFA" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+              <path d="M28 -22 L36 -28" stroke="#A78BFA" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+              <path d="M0 18 L0 28" stroke="#A78BFA" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+              <circle cx="-14" cy="-2" r="3" fill="#A78BFA" opacity="0.6"/>
+              <circle cx="14" cy="-2" r="3" fill="#A78BFA" opacity="0.6"/>
+              <circle cx="0" cy="18" r="5" fill="#A78BFA"/>
+              <circle cx="0" cy="18" r="8" fill="none" stroke="#A78BFA" stroke-width="1.5" opacity="0.4"/>
+            </g>
+            <text x="150" y="65" font-family="Outfit, sans-serif" font-size="30" font-weight="800" fill="#FFFFFF" letter-spacing="-0.5">Vectora</text>
+            <text x="150" y="82" font-family="DM Sans, sans-serif" font-size="10" fill="#A78BFA" letter-spacing="0.5">Routes that learn.</text>
+            <defs>
+              <linearGradient id="vGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#A78BFA"/>
+                <stop offset="100%" stop-color="#7C3AED"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Routd -->
+      <div class="name-card">
+        <div class="info">
+          <div class="label">Option B</div>
+          <h3>Routd</h3>
+          <div class="tagline">"Plan less. Deliver more."</div>
+          <div class="desc">Route + done. Action-oriented, punchy startup energy. Could become a verb: "Just routd it." Short, memorable, snappy domain potential.</div>
+        </div>
+        <div class="logo-box">
+          <svg width="220" height="120" viewBox="0 0 220 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(50, 60)">
+              <!-- Circular route with pin -->
+              <circle cx="0" cy="0" r="22" fill="none" stroke="#7C3AED" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="0 0"/>
+              <circle cx="0" cy="-22" r="5" fill="#7C3AED"/>
+              <circle cx="0" cy="-22" r="2" fill="#fff"/>
+              <!-- Checkmark inside circle -->
+              <path d="M-8 1 L-3 6 L9 -5" stroke="#7C3AED" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <text x="140" y="55" font-family="Outfit, sans-serif" font-size="30" font-weight="800" fill="#1A1025" letter-spacing="-0.5">Routd</text>
+            <text x="140" y="72" font-family="DM Sans, sans-serif" font-size="10" fill="#8B7FA3" letter-spacing="0.5">Plan less. Deliver more.</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Stride -->
+      <div class="name-card">
+        <div class="info">
+          <div class="label">Option C</div>
+          <h3>Stride</h3>
+          <div class="tagline">"Your routes, refined."</div>
+          <div class="desc">Confident forward movement. Warm, human, aspirational. "Hit your stride" &mdash; the moment everything clicks. Premium feel like Stripe, simple like Linear.</div>
+        </div>
+        <div class="logo-box">
+          <svg width="220" height="120" viewBox="0 0 220 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(50, 60)">
+              <!-- Abstract forward arrow / path -->
+              <path d="M-24 8 L-8 -4 L8 4 L24 -8" stroke="url(#sGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <polygon points="24,-8 18,-14 30,-12" fill="#7C3AED"/>
+              <!-- Motion lines -->
+              <line x1="-32" y1="4" x2="-27" y2="6" stroke="#A78BFA" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+              <line x1="-30" y1="12" x2="-25" y2="10" stroke="#A78BFA" stroke-width="1" stroke-linecap="round" opacity="0.2"/>
+              <!-- Node dots -->
+              <circle cx="-8" cy="-4" r="3" fill="#A78BFA" opacity="0.5"/>
+              <circle cx="8" cy="4" r="3" fill="#A78BFA" opacity="0.5"/>
+            </g>
+            <text x="140" y="55" font-family="Outfit, sans-serif" font-size="30" font-weight="800" fill="#1A1025" letter-spacing="-0.5">Stride</text>
+            <text x="140" y="72" font-family="DM Sans, sans-serif" font-size="10" fill="#8B7FA3" letter-spacing="0.5">Your routes, refined.</text>
+            <defs>
+              <linearGradient id="sGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#A78BFA"/>
+                <stop offset="100%" stop-color="#7C3AED"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ 2. COLOR PALETTE ═══ -->
+  <section>
+    <div class="section-label">02 &mdash; Color</div>
+    <div class="section-title">Color Palette</div>
+
+    <div class="palette-section-label">Primary</div>
+    <div class="palette-grid">
+      <div class="swatch" onclick="copySwatch(this, '#7C3AED')">
+        <div class="swatch-color" style="background: #7C3AED;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Purple 600</div>
+          <div class="swatch-hex">#7C3AED</div>
+          <div class="swatch-copied">Copied!</div>
+        </div>
+      </div>
+      <div class="swatch" onclick="copySwatch(this, '#5B21B6')">
+        <div class="swatch-color" style="background: #5B21B6;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Purple 800</div>
+          <div class="swatch-hex">#5B21B6</div>
+          <div class="swatch-copied">Copied!</div>
+        </div>
+      </div>
+      <div class="swatch" onclick="copySwatch(this, '#A78BFA')">
+        <div class="swatch-color" style="background: #A78BFA;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Purple 400</div>
+          <div class="swatch-hex">#A78BFA</div>
+          <div class="swatch-copied">Copied!</div>
+        </div>
+      </div>
+      <div class="swatch" onclick="copySwatch(this, '#EDE9FE')">
+        <div class="swatch-color" style="background: #EDE9FE;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Purple 100</div>
+          <div class="swatch-hex">#EDE9FE</div>
+          <div class="swatch-copied">Copied!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="palette-section-label">Accent</div>
+    <div class="palette-grid">
+      <div class="swatch" onclick="copySwatch(this, '#F59E0B')">
+        <div class="swatch-color" style="background: #F59E0B;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Amber</div>
+          <div class="swatch-hex">#F59E0B</div>
+          <div class="swatch-copied">Copied!</div>
+        </div>
+      </div>
+      <div class="swatch" onclick="copySwatch(this, '#FCD34D')">
+        <div class="swatch-color" style="background: #FCD34D;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Amber Light</div>
+          <div class="swatch-hex">#FCD34D</div>
+          <div class="swatch-copied">Copied!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="palette-section-label">Text &amp; Background</div>
+    <div class="palette-grid">
+      <div class="swatch" onclick="copySwatch(this, '#1A1025')">
+        <div class="swatch-color" style="background: #1A1025;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Heading</div>
+          <div class="swatch-hex">#1A1025</div>
+          <div class="swatch-copied">Copied!</div>
+        </div>
+      </div>
+      <div class="swatch" onclick="copySwatch(this, '#4B3F5E')">
+        <div class="swatch-color" style="background: #4B3F5E;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Body</div>
+          <div class="swatch-hex">#4B3F5E</div>
+          <div class="swatch-copied">Copied!</div>
+        </div>
+      </div>
+      <div class="swatch" onclick="copySwatch(this, '#8B7FA3')">
+        <div class="swatch-color" style="background: #8B7FA3;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Muted</div>
+          <div class="swatch-hex">#8B7FA3</div>
+          <div class="swatch-copied">Copied!</div>
+        </div>
+      </div>
+      <div class="swatch" onclick="copySwatch(this, '#FDFCFB')">
+        <div class="swatch-color" style="background: #FDFCFB; border: 1px solid #E6E1DC;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Background</div>
+          <div class="swatch-hex">#FDFCFB</div>
+          <div class="swatch-copied">Copied!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="palette-section-label">Surface &amp; Borders</div>
+    <div class="palette-grid">
+      <div class="swatch" onclick="copySwatch(this, '#F5F3F0')">
+        <div class="swatch-color" style="background: #F5F3F0;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Surface</div>
+          <div class="swatch-hex">#F5F3F0</div>
+          <div class="swatch-copied">Copied!</div>
+        </div>
+      </div>
+      <div class="swatch" onclick="copySwatch(this, '#E6E1DC')">
+        <div class="swatch-color" style="background: #E6E1DC;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Border</div>
+          <div class="swatch-hex">#E6E1DC</div>
+          <div class="swatch-copied">Copied!</div>
+        </div>
+      </div>
+      <div class="swatch" onclick="copySwatch(this, '#F5F3FF')">
+        <div class="swatch-color" style="background: #F5F3FF;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Purple Tint</div>
+          <div class="swatch-hex">#F5F3FF</div>
+          <div class="swatch-copied">Copied!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="palette-section-label">Semantic</div>
+    <div class="palette-grid">
+      <div class="swatch" onclick="copySwatch(this, '#059669')">
+        <div class="swatch-color" style="background: #059669;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Success</div>
+          <div class="swatch-hex">#059669</div>
+          <div class="swatch-copied">Copied!</div>
+        </div>
+      </div>
+      <div class="swatch" onclick="copySwatch(this, '#DC2626')">
+        <div class="swatch-color" style="background: #DC2626;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Error</div>
+          <div class="swatch-hex">#DC2626</div>
+          <div class="swatch-copied">Copied!</div>
+        </div>
+      </div>
+      <div class="swatch" onclick="copySwatch(this, '#D97706')">
+        <div class="swatch-color" style="background: #D97706;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Warning</div>
+          <div class="swatch-hex">#D97706</div>
+          <div class="swatch-copied">Copied!</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 3. TYPOGRAPHY ═══ -->
+  <section>
+    <div class="section-label">03 &mdash; Typography</div>
+    <div class="section-title">Type Scale</div>
+
+    <div class="type-example">
+      <div class="type-meta">
+        <span class="type-label">H1 &mdash; Display</span>
+        <span class="type-spec">Outfit 900 / 48px / -0.03em</span>
+      </div>
+      <div class="type-sample-h1">Routes that get smarter.</div>
+    </div>
+    <div class="type-example">
+      <div class="type-meta">
+        <span class="type-label">H2 &mdash; Section</span>
+        <span class="type-spec">Outfit 800 / 32px / -0.02em</span>
+      </div>
+      <div class="type-sample-h2">AI-powered route optimization</div>
+    </div>
+    <div class="type-example">
+      <div class="type-meta">
+        <span class="type-label">H3 &mdash; Subsection</span>
+        <span class="type-spec">Outfit 700 / 22px</span>
+      </div>
+      <div class="type-sample-h3">Your preferences, remembered</div>
+    </div>
+    <div class="type-example">
+      <div class="type-meta">
+        <span class="type-label">H4 &mdash; Card title</span>
+        <span class="type-spec">Outfit 700 / 16px</span>
+      </div>
+      <div class="type-sample-h4">3 Paying Design Partners</div>
+    </div>
+    <div class="type-example">
+      <div class="type-meta">
+        <span class="type-label">Body</span>
+        <span class="type-spec">DM Sans 400 / 16px / 1.6</span>
+      </div>
+      <div class="type-sample-body">Every delivery company runs differently. Vectora learns your specific constraints, driver preferences, and operational quirks so routes keep improving without manual tweaking.</div>
+    </div>
+    <div class="type-example">
+      <div class="type-meta">
+        <span class="type-label">Caption</span>
+        <span class="type-spec">DM Sans 400 / 13px / 1.5</span>
+      </div>
+      <div class="type-sample-caption">~EUR 29 / vehicle / month &middot; avg. 15 vehicles per SME</div>
+    </div>
+
+    <div style="margin-top: 32px;">
+      <div class="palette-section-label">Weight Usage</div>
+      <ul class="spec-list">
+        <li>Display headings (H1) <span>Outfit 900 (Black)</span></li>
+        <li>Section headings (H2) <span>Outfit 800 (Extra Bold)</span></li>
+        <li>Subheadings, labels, tags <span>Outfit 700 (Bold)</span></li>
+        <li>Body text <span>DM Sans 400 (Regular)</span></li>
+        <li>Emphasis in body <span>DM Sans 600 (Semi Bold)</span></li>
+        <li>Captions, metadata <span>DM Sans 400 (Regular)</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ 4. VOICE ═══ -->
+  <section>
+    <div class="section-label">04 &mdash; Voice</div>
+    <div class="section-title">Brand Voice</div>
+
+    <div class="voice-principles">
+      <div class="voice-card">
+        <h4>Simple &gt; Clever</h4>
+        <p>Say it plain. No jargon, no buzzwords, no filler. If a planner wouldn't say it, we don't write it.</p>
+      </div>
+      <div class="voice-card">
+        <h4>Direct &gt; Vague</h4>
+        <p>Lead with the point. "Saves 45 minutes a day" beats "enhances operational efficiency."</p>
+      </div>
+      <div class="voice-card">
+        <h4>Warm &gt; Cold</h4>
+        <p>We're talking to real people doing hard work. Helpful and sharp, not robotic or corporate.</p>
+      </div>
+    </div>
+
+    <div class="do-dont">
+      <div class="do-col">
+        <h4>Do</h4>
+        <ul>
+          <li>"Your routes are ready." &mdash; direct, clear</li>
+          <li>"Saved you 23 km today." &mdash; specific, helpful</li>
+          <li>"Something went wrong. We're looking into it." &mdash; honest</li>
+          <li>"Routes get smarter as you use them." &mdash; simple benefit</li>
+          <li>"Built for planners, not IT departments." &mdash; warm, specific</li>
+        </ul>
+      </div>
+      <div class="dont-col">
+        <h4>Don't</h4>
+        <ul>
+          <li>"Leverage our AI-powered optimization engine" &mdash; buzzwords</li>
+          <li>"Unlock next-level logistics efficiency" &mdash; vague marketing</li>
+          <li>"Error 500: Internal Server Error" &mdash; cold, unhelpful</li>
+          <li>"Our proprietary ML model..." &mdash; nobody asked</li>
+          <li>"Revolutionizing the supply chain" &mdash; generic, overblown</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="copy-examples">
+      <div class="palette-section-label">Sample Copy</div>
+      <div class="copy-example">
+        <div class="context">Tagline</div>
+        <div class="copy">Routes that learn.</div>
+      </div>
+      <div class="copy-example">
+        <div class="context">Product Description</div>
+        <div class="copy">Vectora watches how your planners adjust routes and remembers. Tomorrow's routes are already better &mdash; without touching a thing.</div>
+      </div>
+      <div class="copy-example">
+        <div class="context">Onboarding Welcome</div>
+        <div class="copy">Welcome. Import your stops, assign your vehicles, and let Vectora handle the rest. It gets smarter every day.</div>
+      </div>
+      <div class="copy-example">
+        <div class="context">Error State</div>
+        <div class="copy">We couldn't generate routes for 3 stops. Check that all addresses have valid postcodes.</div>
+      </div>
+      <div class="copy-example">
+        <div class="context">Empty State</div>
+        <div class="copy">No routes yet. Upload your first batch of stops to get started.</div>
+      </div>
+      <div class="copy-example">
+        <div class="context">Success</div>
+        <div class="copy">Done. 5 routes, 47 stops, 12% fewer kilometers than yesterday.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 5. POSITIONING ═══ -->
+  <section>
+    <div class="section-label">05 &mdash; Positioning</div>
+    <div class="section-title">Positioning Statement</div>
+
+    <div class="positioning-box">
+      <blockquote>
+        For SME delivery companies frustrated with generic route planning software, <strong style="color: var(--purple);">Vectora</strong> is the route optimization platform that learns how your operation actually works &mdash; because every company's constraints are different.
+      </blockquote>
+    </div>
+
+    <div style="margin-top: 32px;">
+      <div class="palette-section-label">Core Emotion</div>
+      <div style="display: flex; gap: 16px; margin-top: 8px; flex-wrap: wrap;">
+        <div style="background: var(--purple-50); border: 1px solid var(--purple-100); border-radius: 8px; padding: 12px 20px;">
+          <div style="font-family: Outfit; font-weight: 700; font-size: 14px; color: var(--text);">Before</div>
+          <div style="font-size: 13px; color: var(--text-muted);">Frustrated, overwhelmed, doing it manually</div>
+        </div>
+        <div style="font-size: 24px; color: var(--purple); display: flex; align-items: center;">&rarr;</div>
+        <div style="background: var(--purple-50); border: 1px solid var(--purple-100); border-radius: 8px; padding: 12px 20px;">
+          <div style="font-family: Outfit; font-weight: 700; font-size: 14px; color: var(--text);">After</div>
+          <div style="font-size: 13px; color: var(--text-muted);">In control, relieved, proud</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 24px;">
+      <div class="palette-section-label">Magic Moment</div>
+      <div style="font-size: 18px; color: var(--text); font-style: italic; margin-top: 8px;">"This thing gets smarter."</div>
+    </div>
+  </section>
+
+  <!-- ═══ 6. VISUAL DIRECTION ═══ -->
+  <section>
+    <div class="section-label">06 &mdash; Visual Direction</div>
+    <div class="section-title">Components &amp; Styling</div>
+
+    <div class="component-grid">
+      <div class="component-box">
+        <h4>Buttons</h4>
+        <button class="demo-btn primary">Optimize routes</button>
+        <button class="demo-btn secondary">View details</button>
+        <button class="demo-btn ghost">Cancel</button>
+      </div>
+      <div class="component-box">
+        <h4>Inputs</h4>
+        <input class="demo-input" type="text" placeholder="Search stops..." onfocus="this.style.borderColor='var(--purple)'; this.style.boxShadow='0 0 0 3px rgba(124,58,237,0.1)'" onblur="this.style.borderColor='var(--border)'; this.style.boxShadow='none'">
+        <input class="demo-input" type="text" value="Amsterdam, NL" onfocus="this.style.borderColor='var(--purple)'; this.style.boxShadow='0 0 0 3px rgba(124,58,237,0.1)'" onblur="this.style.borderColor='var(--border)'; this.style.boxShadow='none'">
+      </div>
+      <div class="component-box">
+        <h4>Card</h4>
+        <div class="demo-card-inner">
+          <h5>Route A &mdash; 12 stops</h5>
+          <p>38.2 km &middot; Est. 2h 15m &middot; Van</p>
+          <div style="margin-top: 12px; display: flex; gap: 6px;">
+            <span style="font-size: 11px; font-weight: 600; font-family: Outfit; padding: 2px 10px; border-radius: 100px; background: rgba(124,58,237,0.08); color: var(--purple); border: 1px solid rgba(124,58,237,0.15);">Optimized</span>
+            <span style="font-size: 11px; font-weight: 600; font-family: Outfit; padding: 2px 10px; border-radius: 100px; background: rgba(5,150,105,0.08); color: var(--success); border: 1px solid rgba(5,150,105,0.15);">-14% km</span>
+          </div>
+        </div>
+      </div>
+      <div class="component-box">
+        <h4>Design Tokens</h4>
+        <ul class="spec-list">
+          <li>Border radius (buttons) <span>10px</span></li>
+          <li>Border radius (cards) <span>12px</span></li>
+          <li>Border radius (modals) <span>16px</span></li>
+          <li>Shadow (elevated) <span>0 4px 24px rgba(26,16,37,0.08)</span></li>
+          <li>Shadow (hover) <span>0 8px 32px rgba(26,16,37,0.12)</span></li>
+          <li>Spacing unit <span>4px</span></li>
+          <li>Icon style <span>Line, 1.5px stroke, round caps</span></li>
+          <li>Photography <span>None &mdash; illustrations only</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="guide-footer">
+    Vectora Brand Guide &middot; March 2026 &middot; Confidential
+  </div>
+
+</div>
+
+<script>
+function copySwatch(el, hex) {
+  navigator.clipboard.writeText(hex);
+  const copied = el.querySelector('.swatch-copied');
+  const hexEl = el.querySelector('.swatch-hex');
+  hexEl.style.display = 'none';
+  copied.style.display = 'block';
+  setTimeout(() => {
+    copied.style.display = 'none';
+    hexEl.style.display = 'block';
+  }, 1200);
+}
+</script>
+
+</body>
+</html>

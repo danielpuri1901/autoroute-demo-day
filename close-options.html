@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Close Slide Options</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue: #2563eb;
+      --amber: #d97706;
+      --green: #16a34a;
+      --red: #dc2626;
+      --white: #1e293b;
+      --gray: #64748b;
+      --gray-dim: #94a3b8;
+      --bg: #f8fafc;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0f172a; font-family: 'DM Sans', sans-serif; padding: 40px; }
+    h1 { color: #fff; font-family: 'Outfit', sans-serif; font-size: 1.8rem; text-align: center; margin-bottom: 12px; }
+    .subtitle { color: #94a3b8; text-align: center; margin-bottom: 48px; font-size: 1rem; }
+    .grid { display: flex; flex-direction: column; gap: 48px; max-width: 1000px; margin: 0 auto; }
+    .option-label { color: #94a3b8; font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 12px; }
+    .slide {
+      width: 100%; aspect-ratio: 16/9; background: var(--bg);
+      border-radius: 12px; overflow: hidden; position: relative;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+    }
+    .tag {
+      display: inline-block; font-family: 'Outfit', sans-serif;
+      font-size: 0.55rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.18em; padding: 3px 10px; border-radius: 100px;
+    }
+    .tag-blue { color:var(--blue); border:1px solid rgba(59,130,246,0.3); background:rgba(59,130,246,0.08); }
+    .tag-green { color:var(--green); border:1px solid rgba(34,197,94,0.3); background:rgba(34,197,94,0.08); }
+    .tag-amber { color:var(--amber); border:1px solid rgba(245,158,11,0.3); background:rgba(245,158,11,0.08); }
+    .slide-label { position: absolute; top: 16px; left: 24px; z-index: 10; }
+    .slide-body {
+      display: flex; flex-direction: column; justify-content: center;
+      align-items: flex-start; height: 100%; padding: 44px 48px 28px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Close Slide — Pick Your Fighter</h1>
+  <p class="subtitle">Open in browser. Scroll through. Pick the one that hits hardest.</p>
+
+  <div class="grid">
+
+    <!-- OPTION A: Current (for reference) -->
+    <div>
+      <div class="option-label">Current — for reference</div>
+      <div class="slide">
+        <div class="slide-label"><div class="tag tag-blue">Remember This</div></div>
+        <div class="slide-body">
+          <h2 style="font-family:Outfit,sans-serif; font-weight:800; font-size:2rem; color:#1e293b; margin-bottom:0;">AutoRoute</h2>
+          <div style="display:flex; flex-direction:column; gap:8px; margin-top:20px; width:100%; max-width:560px;">
+            <div style="font-family:Outfit,sans-serif; font-size:0.85rem; font-weight:700; color:#1e293b; padding:12px 16px; background:#fff; border-radius:0 8px 8px 0; border:1px solid #e2e8f0; border-left:3px solid var(--blue);">Routes in seconds, not hours</div>
+            <div style="font-family:Outfit,sans-serif; font-size:0.85rem; font-weight:700; color:#1e293b; padding:12px 16px; background:#fff; border-radius:0 8px 8px 0; border:1px solid #e2e8f0; border-left:3px solid var(--green);">3 paying design partners — already validated</div>
+            <div style="font-family:Outfit,sans-serif; font-size:0.85rem; font-weight:700; color:#1e293b; padding:12px 16px; background:#fff; border-radius:0 8px 8px 0; border:1px solid #e2e8f0; border-left:3px solid var(--amber);">AI that understands what planners actually need</div>
+            <div style="font-family:Outfit,sans-serif; font-size:0.85rem; font-weight:700; color:#1e293b; padding:12px 16px; background:#fff; border-radius:0 8px 8px 0; border:1px solid #e2e8f0; border-left:3px solid var(--red);">2028 zero-emission mandate is the forcing function</div>
+          </div>
+          <div style="margin-top:20px;">
+            <p style="font-family:Outfit,sans-serif; font-size:0.8rem; font-weight:700; color:#1e293b;">3 paying customers before launch. We're signing 20 more this quarter.</p>
+            <p style="font-size:0.7rem; color:var(--gray); margin-top:4px;">Come see it live.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPTION B: Big Numbers -->
+    <div>
+      <div class="option-label">Option A — Let the numbers talk</div>
+      <div class="slide">
+        <div class="slide-label"><div class="tag tag-green">Traction</div></div>
+        <div class="slide-body" style="align-items:center; text-align:center;">
+          <div style="display:flex; gap:40px; margin-top:8px;">
+            <div>
+              <div style="font-family:Outfit,sans-serif; font-size:3.5rem; font-weight:900; color:var(--blue); line-height:1;">3</div>
+              <div style="font-family:Outfit,sans-serif; font-size:0.75rem; font-weight:600; color:var(--gray); margin-top:4px;">paying customers<br><span style="color:var(--gray-dim);">before launch</span></div>
+            </div>
+            <div>
+              <div style="font-family:Outfit,sans-serif; font-size:3.5rem; font-weight:900; color:var(--green); line-height:1;">4</div>
+              <div style="font-family:Outfit,sans-serif; font-size:0.75rem; font-weight:600; color:var(--gray); margin-top:4px;">days to build<br><span style="color:var(--gray-dim);">live product</span></div>
+            </div>
+            <div>
+              <div style="font-family:Outfit,sans-serif; font-size:3.5rem; font-weight:900; color:var(--amber); line-height:1;">2028</div>
+              <div style="font-family:Outfit,sans-serif; font-size:0.75rem; font-weight:600; color:var(--gray); margin-top:4px;">zero-emission deadline<br><span style="color:var(--gray-dim);">every courier needs this</span></div>
+            </div>
+          </div>
+          <div style="margin-top:32px; padding-top:20px; border-top:1px solid #e2e8f0; width:100%; max-width:500px;">
+            <p style="font-family:Outfit,sans-serif; font-size:1rem; font-weight:800; color:#1e293b;">AutoRoute</p>
+            <p style="font-size:0.75rem; color:var(--gray); margin-top:4px;">Come see it live.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPTION C: One Big Line -->
+    <div>
+      <div class="option-label">Option B — One line they won't forget</div>
+      <div class="slide">
+        <div class="slide-body" style="justify-content:center; align-items:flex-start; padding:48px 56px;">
+          <h2 style="font-family:Outfit,sans-serif; font-weight:900; font-size:2.2rem; color:#1e293b; line-height:1.15; max-width:600px;">
+            Every courier in Europe needs to go zero-emission by 2028.<br>
+            <span style="color:var(--blue);">Their routes aren't ready.</span>
+          </h2>
+          <div style="display:flex; gap:24px; margin-top:28px;">
+            <div style="font-family:Outfit,sans-serif; font-size:0.7rem; color:var(--gray);"><strong style="color:#1e293b; font-size:0.85rem;">3</strong> paying customers</div>
+            <div style="font-family:Outfit,sans-serif; font-size:0.7rem; color:var(--gray);"><strong style="color:#1e293b; font-size:0.85rem;">Live</strong> product</div>
+            <div style="font-family:Outfit,sans-serif; font-size:0.7rem; color:var(--gray);"><strong style="color:#1e293b; font-size:0.85rem;">4 days</strong> to build</div>
+          </div>
+          <div style="margin-top:28px;">
+            <p style="font-family:Outfit,sans-serif; font-size:0.85rem; font-weight:700; color:var(--blue);">Come see it live &rarr;</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPTION D: Challenge -->
+    <div>
+      <div class="option-label">Option C — The challenge</div>
+      <div class="slide">
+        <div class="slide-body" style="justify-content:center; align-items:center; text-align:center;">
+          <h2 style="font-family:Outfit,sans-serif; font-weight:900; font-size:2rem; color:#1e293b; line-height:1.2;">
+            Give us your delivery addresses.
+          </h2>
+          <h2 style="font-family:Outfit,sans-serif; font-weight:900; font-size:2rem; color:var(--blue); line-height:1.2; margin-top:4px;">
+            We'll optimize them in 30 seconds.
+          </h2>
+          <div style="display:flex; gap:20px; margin-top:32px; padding-top:20px; border-top:1px solid #e2e8f0;">
+            <div style="background:rgba(37,99,235,0.06); border:1px solid rgba(37,99,235,0.15); border-radius:8px; padding:10px 18px;">
+              <div style="font-family:Outfit,sans-serif; font-size:1rem; font-weight:800; color:var(--blue);">3</div>
+              <div style="font-size:0.6rem; color:var(--gray);">paying customers</div>
+            </div>
+            <div style="background:rgba(22,163,74,0.06); border:1px solid rgba(22,163,74,0.15); border-radius:8px; padding:10px 18px;">
+              <div style="font-family:Outfit,sans-serif; font-size:1rem; font-weight:800; color:var(--green);">Live</div>
+              <div style="font-size:0.6rem; color:var(--gray);">product</div>
+            </div>
+            <div style="background:rgba(217,119,6,0.06); border:1px solid rgba(217,119,6,0.15); border-radius:8px; padding:10px 18px;">
+              <div style="font-family:Outfit,sans-serif; font-size:1rem; font-weight:800; color:var(--amber);">2028</div>
+              <div style="font-size:0.6rem; color:var(--gray);">deadline coming</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPTION E: Minimal / Confident -->
+    <div>
+      <div class="option-label">Option D — Confident and minimal</div>
+      <div class="slide">
+        <div class="slide-body" style="justify-content:center; align-items:flex-start; padding:48px 56px;">
+          <div class="tag tag-blue" style="margin-bottom:16px;">AutoRoute</div>
+          <h2 style="font-family:Outfit,sans-serif; font-weight:800; font-size:1.6rem; color:#1e293b; line-height:1.3; margin-bottom:24px;">
+            3 paying customers before launch.<br>
+            Signing 20 more this quarter.
+          </h2>
+          <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:24px;">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <div style="width:6px; height:6px; border-radius:50%; background:var(--blue);"></div>
+              <span style="font-size:0.75rem; color:var(--gray);">AI-powered route optimization for last-mile delivery</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <div style="width:6px; height:6px; border-radius:50%; background:var(--green);"></div>
+              <span style="font-size:0.75rem; color:var(--gray);">Live product, built in 4 days</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <div style="width:6px; height:6px; border-radius:50%; background:var(--red);"></div>
+              <span style="font-size:0.75rem; color:var(--gray);">2028 zero-emission mandate is the forcing function</span>
+            </div>
+          </div>
+          <p style="font-family:Outfit,sans-serif; font-size:0.85rem; font-weight:700; color:var(--blue);">Come see it live &rarr;</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

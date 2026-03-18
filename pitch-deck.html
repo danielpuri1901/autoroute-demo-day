@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AutoRoute — Odyssey Demo Day</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #ffffff;
+    color: #0f0f0f;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .slide {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    padding: 60px 80px;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+
+  .slide.active { display: flex; }
+
+  /* Progress bar — uses route blue */
+  .progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: #3b82f6;
+    transition: width 0.3s ease;
+    z-index: 100;
+  }
+
+  /* Slide counter */
+  .counter {
+    position: fixed;
+    bottom: 24px;
+    right: 40px;
+    font-size: 14px;
+    color: #b0b0b0;
+    font-weight: 500;
+    z-index: 100;
+  }
+
+  /* Speaker notes toggle */
+  .notes {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,0.97);
+    border-top: 1px solid #e5e7eb;
+    padding: 20px 40px;
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+    max-height: 30vh;
+    overflow-y: auto;
+    z-index: 200;
+    backdrop-filter: blur(8px);
+  }
+  .notes.visible { display: block; }
+
+  /* Typography */
+  h1 {
+    font-size: 72px;
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
+    color: #0f0f0f;
+  }
+  h2 {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    margin-bottom: 20px;
+    color: #0f0f0f;
+  }
+  h3 {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    color: #0f0f0f;
+  }
+  .subtitle {
+    font-size: 28px;
+    font-weight: 400;
+    color: #6b7280;
+    line-height: 1.4;
+    max-width: 800px;
+  }
+
+  /* Accent: route blue */
+  .accent {
+    color: #3b82f6;
+  }
+  .highlight {
+    color: #ef4444;
+  }
+  .dim { color: #9ca3af; }
+  .medium { color: #6b7280; }
+
+  /* Layout helpers */
+  .row { display: flex; gap: 60px; align-items: flex-start; }
+  .col { flex: 1; }
+  .mt-16 { margin-top: 16px; }
+  .mt-24 { margin-top: 24px; }
+  .mt-40 { margin-top: 40px; }
+  .mt-60 { margin-top: 60px; }
+  .mb-8 { margin-bottom: 8px; }
+  .mb-16 { margin-bottom: 16px; }
+  .mb-24 { margin-bottom: 24px; }
+
+  /* Stat blocks */
+  .stat-row {
+    display: flex;
+    gap: 48px;
+    margin-top: 48px;
+  }
+  .stat { flex: 1; }
+  .stat-number {
+    font-size: 64px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-number.red { color: #ef4444; }
+  .stat-number.orange { color: #f97316; }
+  .stat-number.blue { color: #3b82f6; }
+  .stat-label {
+    font-size: 20px;
+    color: #6b7280;
+    font-weight: 500;
+  }
+
+  /* Problem bullets — red dots */
+  .problem-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-top: 32px;
+  }
+  .problem-list li {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.3;
+    padding-left: 32px;
+    position: relative;
+    color: #1f2937;
+  }
+  .problem-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ef4444;
+  }
+
+  /* Solution bullets — green dots */
+  .solution-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-top: 32px;
+  }
+  .solution-list li {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.3;
+    padding-left: 32px;
+    position: relative;
+    color: #1f2937;
+  }
+  .solution-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #22c55e;
+  }
+
+  /* Cards — light bg, gray border like the app */
+  .partner-grid {
+    display: flex;
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .partner-card {
+    flex: 1;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 32px;
+  }
+  .partner-card h3 {
+    font-size: 28px;
+    margin-bottom: 8px;
+    color: #0f0f0f;
+  }
+  .partner-card p {
+    font-size: 18px;
+    color: #6b7280;
+    line-height: 1.4;
+  }
+
+  /* Team section */
+  .team-grid {
+    display: flex;
+    gap: 32px;
+    margin-top: 40px;
+  }
+  .team-card {
+    flex: 1;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 40px;
+  }
+  .team-card .name {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 4px;
+    color: #0f0f0f;
+  }
+  .team-card .role {
+    font-size: 20px;
+    color: #3b82f6;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .team-card .cred {
+    font-size: 18px;
+    color: #6b7280;
+    line-height: 1.6;
+  }
+  .team-card .cred strong {
+    color: #1f2937;
+    font-weight: 600;
+  }
+
+  /* TAM visual */
+  .tam-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 40px;
+    max-width: 700px;
+  }
+  .tam-bar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .tam-bar .bar {
+    height: 52px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    font-weight: 700;
+    font-size: 22px;
+  }
+  .tam-bar .label {
+    font-size: 18px;
+    color: #6b7280;
+    white-space: nowrap;
+  }
+
+  /* Why now cards */
+  .why-now-grid {
+    display: flex;
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .why-card {
+    flex: 1;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 32px;
+  }
+  .why-card h3 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: #0f0f0f;
+  }
+  .why-card p {
+    font-size: 17px;
+    color: #6b7280;
+    line-height: 1.5;
+  }
+
+  /* Close slide vertebrae */
+  .vertebrae {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 40px;
+  }
+  .vertebra {
+    font-size: 28px;
+    font-weight: 700;
+    padding: 20px 28px;
+    background: #f9fafb;
+    border-left: 4px solid;
+    border-radius: 0 10px 10px 0;
+    color: #1f2937;
+  }
+  .vertebra:nth-child(1) { border-left-color: #3b82f6; }
+  .vertebra:nth-child(2) { border-left-color: #22c55e; }
+  .vertebra:nth-child(3) { border-left-color: #a855f7; }
+  .vertebra:nth-child(4) { border-left-color: #f97316; }
+
+  /* Tag — like the status badges in the app */
+  .tag {
+    display: inline-block;
+    background: #eff6ff;
+    color: #3b82f6;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 6px;
+    border: 1px solid #bfdbfe;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 20px;
+  }
+
+  /* Keyboard hint */
+  .hint {
+    position: fixed;
+    bottom: 24px;
+    left: 40px;
+    font-size: 13px;
+    color: #d1d5db;
+    z-index: 100;
+  }
+
+  /* Step circles — use route colors */
+  .step-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 20px;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  /* Product box */
+  .product-box {
+    flex: 1;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 32px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="counter" id="counter"></div>
+<div class="notes" id="notes"></div>
+<div class="hint">Arrow keys to navigate &middot; N for speaker notes</div>
+
+<!-- ========================================== -->
+<!-- SLIDE 1: TITLE + HOOK                      -->
+<!-- ========================================== -->
+<div class="slide" data-notes="Open strong. Pause after '3 paying partners' — let it land. Confident, not rushed. 15 seconds max.">
+  <div class="tag">Odyssey &middot; University of Amsterdam</div>
+  <h1>AutoRoute</h1>
+  <p class="subtitle" style="font-size: 32px; color: #4b5563; font-weight: 500;">
+    AI-powered route optimization for delivery companies.
+  </p>
+  <p class="subtitle mt-40" style="font-size: 24px; color: #9ca3af;">
+    3 paying design partners. Live product. Built in 4 days.
+  </p>
+</div>
+
+<!-- ========================================== -->
+<!-- SLIDE 2: PROBLEM                           -->
+<!-- ========================================== -->
+<div class="slide" data-notes="Paint the picture. Every morning, a planner at a courier company sits down with 50-80 deliveries and plans routes by hand. It takes 45 minutes. Then a same-day order comes in and they start over. This is how thousands of Dutch SME couriers operate today. Speak slowly, let the audience feel the pain.">
+  <div class="tag">The Problem</div>
+  <h2>Every morning, courier planners<br>build routes <span class="highlight">by hand</span></h2>
+  <ul class="problem-list">
+    <li>50+ stops planned on paper, Excel, or gut feeling</li>
+    <li>Takes 45 minutes every morning — per planner</li>
+    <li>Same-day orders come in? Start over</li>
+  </ul>
+</div>
+
+<!-- ========================================== -->
+<!-- SLIDE 3: COST OF THE PROBLEM               -->
+<!-- ========================================== -->
+<div class="slide" data-notes="Quantify the pain. These aren't theoretical numbers — they come from our conversations with couriers. Drivers waste 20-30% of their time on suboptimal routes. For a 10-vehicle fleet, that's tens of thousands in wasted fuel and wages per year. Pause on '20-30% longer than optimal' — this is the money shot.">
+  <div class="tag">The Cost</div>
+  <h2>Manual routes are<br><span style="color: #ef4444;">20-30% longer</span> than optimal</h2>
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-number red">45m</div>
+      <div class="stat-label">wasted every morning<br>per planner</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number orange">20%</div>
+      <div class="stat-label">excess kilometers<br>driven daily</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number blue">0</div>
+      <div class="stat-label">same-day delivery<br>re-optimization</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- SLIDE 4: SOLUTION                          -->
+<!-- ========================================== -->
+<div class="slide" data-notes="Now flip the script. AutoRoute replaces that 45-minute manual process with AI that does it in seconds. And the key differentiator: planners can adjust routes by typing what they want in plain language. 'Avoid the city center before 10am' — done. No settings menus, no config files. Just say what you need. This is where you show confidence — you've built something that actually works.">
+  <div class="tag">The Solution</div>
+  <h2>AutoRoute optimizes routes<br>in <span class="accent">seconds</span>, not hours</h2>
+  <ul class="solution-list">
+    <li>80 deliveries across 7 vehicles — optimized instantly</li>
+    <li>Adjust routes in plain language: <span class="medium">"avoid city center before 10am"</span></li>
+    <li>Real Amsterdam road data, not straight lines</li>
+  </ul>
+</div>
+
+<!-- ========================================== -->
+<!-- SLIDE 5: QUICK DEMO / PRODUCT              -->
+<!-- ========================================== -->
+<div class="slide" data-notes="OPTION A: Do a 15-second live demo — open the app, hit Generate Routes, show the map light up with optimized routes. OPTION B: If no demo, just talk through this slide. Key message: this is a real product, not a mockup. It uses real Amsterdam addresses, real road routing, and an AI engine that understands operations research. The planner types preferences in natural language and the system adapts.">
+  <div class="tag">How It Works</div>
+  <h2>From deliveries to routes<br>in one click</h2>
+  <div style="margin-top: 40px; display: flex; gap: 40px; align-items: center;">
+    <div style="flex: 1;">
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div class="step-circle" style="background: #3b82f6;">1</div>
+          <div style="font-size: 24px; font-weight: 600; color: #1f2937;">Import deliveries</div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div class="step-circle" style="background: #22c55e;">2</div>
+          <div style="font-size: 24px; font-weight: 600; color: #1f2937;">AI optimizes routes in seconds</div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div class="step-circle" style="background: #a855f7;">3</div>
+          <div style="font-size: 24px; font-weight: 600; color: #1f2937;">Adjust in plain language, re-optimize live</div>
+        </div>
+      </div>
+    </div>
+    <div class="product-box">
+      <div style="font-size: 14px; color: #9ca3af; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Live Product</div>
+      <div style="display: flex; justify-content: center; gap: 8px; margin-bottom: 16px;">
+        <div style="width: 12px; height: 12px; border-radius: 50%; background: #ef4444;"></div>
+        <div style="width: 12px; height: 12px; border-radius: 50%; background: #3b82f6;"></div>
+        <div style="width: 12px; height: 12px; border-radius: 50%; background: #22c55e;"></div>
+        <div style="width: 12px; height: 12px; border-radius: 50%; background: #f97316;"></div>
+        <div style="width: 12px; height: 12px; border-radius: 50%; background: #a855f7;"></div>
+        <div style="width: 12px; height: 12px; border-radius: 50%; background: #14b8a6;"></div>
+      </div>
+      <div style="font-size: 16px; color: #6b7280; line-height: 1.6;">80 real Amsterdam addresses<br>7 vehicles &middot; real road routing<br>natural language preferences</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- SLIDE 6: TRACTION                          -->
+<!-- ========================================== -->
+<div class="slide" data-notes="This is your strongest proof point. Three real companies are paying for this. Name them confidently. MyPup — parcel lockers and last-mile delivery. Fietskoerier — bicycle couriers in Amsterdam. Foremore — logistics. Contracts are being finalized. Don't oversell, but don't undersell either. 'Three companies said yes with their wallets. That's validation.'">
+  <div class="tag">Traction</div>
+  <h2><span class="accent">3</span> paying design partners</h2>
+  <div class="partner-grid">
+    <div class="partner-card" style="border-top: 3px solid #ef4444;">
+      <h3>MyPup</h3>
+      <p>Last-mile parcel delivery across Amsterdam</p>
+    </div>
+    <div class="partner-card" style="border-top: 3px solid #3b82f6;">
+      <h3>Fietskoerier</h3>
+      <p>Bicycle courier network in the city center</p>
+    </div>
+    <div class="partner-card" style="border-top: 3px solid #22c55e;">
+      <h3>Foremore</h3>
+      <p>Logistics and fulfillment operations</p>
+    </div>
+  </div>
+  <p class="mt-40" style="font-size: 22px; color: #9ca3af;">Contracts being finalized. MVP validated in under 2 weeks.</p>
+</div>
+
+<!-- ========================================== -->
+<!-- SLIDE 7: WHY NOW                           -->
+<!-- ========================================== -->
+<div class="slide" data-notes="Three forces converging RIGHT NOW. First: legacy tools like Excel and basic TMS systems weren't built for AI and can't adapt. Second: Amsterdam's 2028 zero-emission zone regulation forces every courier to rethink their fleet — they need smart routing that handles mixed fleets of EVs, cargo bikes, and vans. Third: LLMs can now understand operational constraints in natural language, which was impossible 2 years ago. This is the window.">
+  <div class="tag">Why Now</div>
+  <h2>Three forces converging</h2>
+  <div class="why-now-grid">
+    <div class="why-card" style="border-top: 3px solid #ef4444;">
+      <div style="font-size: 20px; font-weight: 800; color: #ef4444; margin-bottom: 12px;">Legacy</div>
+      <h3>Outdated tools</h3>
+      <p>Couriers use Excel, paper, or 15-year-old software. No AI. No adaptability.</p>
+    </div>
+    <div class="why-card" style="border-top: 3px solid #f97316;">
+      <div style="font-size: 20px; font-weight: 800; color: #f97316; margin-bottom: 12px;">2028</div>
+      <h3>Zero-emission mandate</h3>
+      <p>Amsterdam requires zero-emission delivery by 2028. Every courier must rethink fleet routing.</p>
+    </div>
+    <div class="why-card" style="border-top: 3px solid #22c55e;">
+      <div style="font-size: 20px; font-weight: 800; color: #22c55e; margin-bottom: 12px;">AI</div>
+      <h3>LLMs meet OR</h3>
+      <p>For the first time, AI can understand operational constraints in natural language.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- SLIDE 8: MARKET                            -->
+<!-- ========================================== -->
+<div class="slide" data-notes="Bottoms-up math. Keep it simple and credible. We charge per vehicle per month. There are about 3,000 SME delivery companies in the Netherlands with an average of 15 vehicles. That's a 16 million euro Dutch market. Europe scales to 300M+. But we're focused — starting in Noord-Holland, expanding from there. Don't get lost in big numbers. The point is: this is a real, reachable market and we know exactly who our customers are.">
+  <div class="tag">Market</div>
+  <h2>SME last-mile delivery</h2>
+  <div class="tam-stack">
+    <div class="tam-bar">
+      <div class="bar" style="width: 600px; background: #eff6ff; border: 1px solid #bfdbfe; color: #3b82f6;">
+        EUR 300M+
+      </div>
+      <div class="label">Europe &middot; 100K+ SME couriers</div>
+    </div>
+    <div class="tam-bar">
+      <div class="bar" style="width: 350px; background: #dbeafe; border: 1px solid #93c5fd; color: #2563eb;">
+        EUR 16M
+      </div>
+      <div class="label">Netherlands &middot; 3K companies</div>
+    </div>
+    <div class="tam-bar">
+      <div class="bar" style="width: 150px; background: #3b82f6; border: 1px solid #3b82f6; color: white;">
+        EUR 2.6M
+      </div>
+      <div class="label">Noord-Holland &middot; starting here</div>
+    </div>
+  </div>
+  <p class="mt-24" style="font-size: 20px; color: #9ca3af;">~EUR 29 / vehicle / month &middot; avg. 15 vehicles per SME</p>
+</div>
+
+<!-- ========================================== -->
+<!-- SLIDE 9: TEAM                              -->
+<!-- ========================================== -->
+<div class="slide" data-notes="Keep this tight. Nathan is the optimization brain — he did research at Stanford with Prof. Madeleine Udell on using LLMs for optimization, and he's a research assistant at UvA under Prof. Dick den Hertog, one of the top OR professors in Europe. He realized academic optimization doesn't translate to real-world applications — so he's building the bridge. Daniel is the builder — serial founder, shipped products to 26,000+ users, full-stack engineer who loves giving people something novel. Together: the science and the engineering.">
+  <div class="tag">Team</div>
+  <div class="team-grid">
+    <div class="team-card" style="border-top: 3px solid #3b82f6;">
+      <div class="name">Nathan Ferchtandiker</div>
+      <div class="role">Optimization & Data Science</div>
+      <div class="cred">
+        <strong>Stanford</strong> visiting researcher — LLMs for optimization<br>
+        <strong>UvA</strong> Research Assistant under Prof. Dick den Hertog<br>
+        MSc Data Science <span style="color:#9ca3af;">(8.63 GPA)</span> &middot; BSc Business Analytics <span style="color:#9ca3af;">(cum laude)</span><br>
+        <span style="color: #9ca3af; margin-top: 8px; display: block;">Academic optimization doesn't translate to the real world. So he's building the bridge.</span>
+      </div>
+    </div>
+    <div class="team-card" style="border-top: 3px solid #a855f7;">
+      <div class="name">Daniel Puri</div>
+      <div class="role">Product & Engineering</div>
+      <div class="cred">
+        <strong>Serial builder</strong> — 3 startups, products scaled to 26,000+ users<br>
+        <strong>UvA</strong> BSc Business Admin <span style="color:#9ca3af;">(3.9 GPA)</span> &middot; Entrepreneurship minor<br>
+        Full-stack engineer &middot; AI-native development<br>
+        <span style="color: #9ca3af; margin-top: 8px; display: block;">Loves building solutions to problems and giving people something novel.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- SLIDE 10: ASK + CLOSE                      -->
+<!-- ========================================== -->
+<div class="slide" data-notes="End with absolute confidence. You're not begging for money — you're looking for the right partners to grow with. Pause after each vertebra. Make eye contact. Then: 'We're AutoRoute. Come talk to us.' Walk off. Don't linger.">
+  <div class="tag">Remember This</div>
+  <h1 style="font-size: 56px;">AutoRoute</h1>
+  <div class="vertebrae">
+    <div class="vertebra">Routes in seconds, not hours</div>
+    <div class="vertebra">3 paying design partners — already validated</div>
+    <div class="vertebra">AI that understands what planners actually need</div>
+    <div class="vertebra">2028 zero-emission mandate is the forcing function</div>
+  </div>
+  <div class="mt-60">
+    <p style="font-size: 28px; font-weight: 700; color: #0f0f0f;">We're looking for pilot partners.</p>
+    <p style="font-size: 22px; color: #9ca3af; margin-top: 8px;">Come talk to us.</p>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- JAVASCRIPT: Navigation                     -->
+<!-- ========================================== -->
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const progress = document.getElementById('progress');
+  const counter = document.getElementById('counter');
+  const notesEl = document.getElementById('notes');
+  let current = 0;
+  let showNotes = false;
+
+  function updateSlide() {
+    slides.forEach((s, i) => s.classList.toggle('active', i === current));
+    progress.style.width = ((current + 1) / slides.length * 100) + '%';
+    counter.textContent = (current + 1) + ' / ' + slides.length;
+    notesEl.textContent = slides[current].dataset.notes || '';
+  }
+
+  function next() { if (current < slides.length - 1) { current++; updateSlide(); } }
+  function prev() { if (current > 0) { current--; updateSlide(); } }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); next(); }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); prev(); }
+    if (e.key === 'n' || e.key === 'N') { showNotes = !showNotes; notesEl.classList.toggle('visible', showNotes); }
+    if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    }
+  });
+
+  let touchStartX = 0;
+  document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+  document.addEventListener('touchend', (e) => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (e.clientX > window.innerWidth / 2) next();
+    else prev();
+  });
+
+  updateSlide();
+</script>
+
+</body>
+</html>
