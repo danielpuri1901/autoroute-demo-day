@@ -29,14 +29,6 @@
       --surface: #F5F3F0;
       --border: #E6E1DC;
       --charcoal: #2D2438;
-      /* Legacy aliases (canvas JS still references these) */
-      --blue: var(--purple);
-      --green: var(--success);
-      --red: var(--error);
-      --white: var(--text);
-      --gray: var(--body);
-      --gray-dim: var(--muted);
-      --bg-dark: var(--border);
     }
 
     .reveal-viewport { background: var(--bg) !important; }
@@ -63,9 +55,6 @@
       align-items: flex-start; height: 100%; padding: 72px 80px 40px;
     }
 
-    /* Full-bleed canvas inside slide */
-    .map-canvas { display: block; margin: 0 auto; }
-
     /* Persistent brand name — top-right on every slide except title */
     .brand-watermark {
       position: fixed; top: 22px; right: 32px; z-index: 50;
@@ -81,80 +70,72 @@
   <div class="brand-watermark">AutoRoute</div>
   <div class="slides">
 
-    <!-- 1. TITLE -->
+    <!-- 1. WHAT -->
     <section data-background-color="#FDFCFB">
       <div style="display:flex; flex-direction:column; justify-content:center; align-items:flex-start; height:100%; padding:0 80px;">
-        <h2 style="font-size:5rem; margin:0 0 24px; color:var(--purple); font-weight:900; letter-spacing:-0.03em;">AutoRoute</h2>
-        <p style="font-size:2rem; color:var(--body); font-weight:500; max-width:800px; line-height:1.4; margin:0;">
-          Smartest Route Planning for SMEs to Save Time and Money.
-        </p>
+        <h2 style="font-size:5rem; margin:0 0 20px; color:var(--purple); font-weight:900; letter-spacing:-0.03em;">AutoRoute</h2>
+        <p style="font-size:2rem; color:var(--body); font-weight:500; margin:0;">Delivery route planner that learns over time.</p>
       </div>
     </section>
 
-    <!-- 2. MEET TIM -->
+    <!-- 2. PROBLEM — 3 companies, 1 generic box -->
     <section data-background-color="#FDFCFB">
-      <div class="slide-body" style="flex-direction:row; align-items:center; gap:60px; padding:72px 80px 40px;">
-        <div style="flex-shrink:0;">
-          <img src="360_F_90658211_6txAL6OKPm8OFxdwkC9yw6mTqS6ayjav.jpg" style="width:280px; height:280px; border-radius:16px; object-fit:cover; box-shadow:0 8px 32px rgba(26,16,37,0.12);">
-        </div>
-        <div style="flex:1;">
-          <h2 style="font-size:2.8rem; margin:0 0 12px;">This is Tim.</h2>
-          <p style="font-size:1.6rem; color:var(--purple); font-weight:600; margin:0 0 24px; line-height:1.4;">Route planner at a 15-van courier company in Amsterdam.</p>
-          <p style="font-size:1.4rem; color:var(--body); margin:0 0 12px; line-height:1.6;">Every morning, Tim plans routes for 30+ stops across the city. He uses route software, but still spends 45 minutes adjusting everything by hand.</p>
-          <p style="font-size:1.4rem; color:var(--muted); margin:0; line-height:1.6; font-style:italic;">The next slides show why.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3. PROBLEM (canvas) -->
-    <section data-phase="map" data-background-color="#FDFCFB">
-      <canvas class="map-canvas" id="mapCanvas" width="1280" height="720"></canvas>
-      <span class="fragment" data-step="routes" style="display:none;"></span>
-      <span class="fragment" data-step="center" style="display:none;"></span>
-      <span class="fragment" data-step="manual" style="display:none;"></span>
-      <span class="fragment" data-step="problems" style="display:none;"></span>
-    </section>
-
-    <!-- 3. SOLUTION (demo video) -->
-    <section data-background-color="#FDFCFB">
-      <div style="display:flex; justify-content:center; align-items:center; height:100%; padding:48px 60px 24px;">
-        <video src="VIDEO-2026-03-18-16-53-23.mp4" controls playsinline style="width:100%; max-height:620px; border-radius:12px; box-shadow:0 8px 32px rgba(26,16,37,0.12);"></video>
-      </div>
-    </section>
-
-    <!-- 5. TEAM -->
-    <section data-background-color="#FDFCFB">
-      <div class="slide-body">
-        <div style="display:flex; gap:28px; margin-top:28px; width:100%;">
-          <div class="brand-card" style="flex:1; padding:32px 36px;">
-            <img src="ferchtandiker.jpg" style="width:140px; height:140px; border-radius:50%; object-fit:cover; margin-bottom:16px;">
-            <div style="font-family:Outfit,sans-serif; font-size:1.5rem; font-weight:800; color:var(--text); margin-bottom:4px;">Nathan Ferchtandiker</div>
-            <div style="font-size:1.5rem; font-weight:600; color:var(--purple); margin-bottom:18px;">Optimization &amp; Data Science</div>
-            <div style="font-size:1.5rem; color:var(--body); line-height:1.8;">
-              Researched AI-driven route optimization at Stanford<br>
-              MSc Data Science
-            </div>
-            <p style="font-size:1.3rem; color:var(--muted); margin-top:14px; line-height:1.5; font-style:italic;">Studied route optimization in theory. Now solving it for real.</p>
+      <div class="slide-body" style="align-items:flex-start; padding:52px 80px 36px;">
+        <h2 style="font-size:2.8rem; margin:0 0 28px;">Different companies. Same software.</h2>
+        <div style="display:flex; gap:24px; width:100%;">
+          <div style="flex:1; padding:28px 28px 24px; text-align:center; border:1.5px solid var(--purple-light); border-radius:12px;">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin-bottom:10px;"><circle cx="11" cy="26" r="6" stroke="#A78BFA" stroke-width="1.5" fill="none"/><circle cx="25" cy="26" r="6" stroke="#A78BFA" stroke-width="1.5" fill="none"/><path d="M17 26V12L22 8" stroke="#A78BFA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M17 18H24" stroke="#A78BFA" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <div style="font-family:Outfit,sans-serif; font-size:1.5rem; font-weight:800; color:var(--text); margin-bottom:6px;">Bike Courier</div>
+            <div style="font-size:1.2rem; color:var(--body);">Range and cargo limits</div>
           </div>
-          <div class="brand-card" style="flex:1; padding:32px 36px;">
-            <img src="puri.jpg" style="width:140px; height:140px; border-radius:50%; object-fit:cover; margin-bottom:16px;">
-            <div style="font-family:Outfit,sans-serif; font-size:1.5rem; font-weight:800; color:var(--text); margin-bottom:4px;">Daniel Puri</div>
-            <div style="font-size:1.5rem; font-weight:600; color:var(--purple); margin-bottom:18px;">Product &amp; Engineering</div>
-            <div style="font-size:1.5rem; color:var(--body); line-height:1.8;">
-              3 startups, products scaled to 26,000+ users<br>
-              BSc Business Admin student
-            </div>
-            <p style="font-size:1.3rem; color:var(--muted); margin-top:14px; line-height:1.5; font-style:italic;">3 startups before finishing his degree. Builds things people use.</p>
+          <div style="flex:1; padding:28px 28px 24px; text-align:center; border:1.5px solid var(--purple-light); border-radius:12px;">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin-bottom:10px;"><rect x="6" y="10" width="24" height="18" rx="3" stroke="#A78BFA" stroke-width="1.5" fill="none"/><path d="M6 16H30" stroke="#A78BFA" stroke-width="1.5"/><circle cx="18" cy="23" r="3" stroke="#A78BFA" stroke-width="1.5" fill="none"/><path d="M13 6V10M23 6V10" stroke="#A78BFA" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <div style="font-family:Outfit,sans-serif; font-size:1.5rem; font-weight:800; color:var(--text); margin-bottom:6px;">Frozen Goods</div>
+            <div style="font-size:1.2rem; color:var(--body);">Strict time windows</div>
+          </div>
+          <div style="flex:1; padding:28px 28px 24px; text-align:center; border:1.5px solid var(--purple-light); border-radius:12px;">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin-bottom:10px;"><rect x="7" y="10" width="22" height="18" rx="2" stroke="#A78BFA" stroke-width="1.5" fill="none"/><path d="M7 10L18 18L29 10" stroke="#A78BFA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M14 6H22V10H14z" stroke="#A78BFA" stroke-width="1.5" fill="none" rx="1"/></svg>
+            <div style="font-family:Outfit,sans-serif; font-size:1.5rem; font-weight:800; color:var(--text); margin-bottom:6px;">Same-Day Parcel</div>
+            <div style="font-size:1.2rem; color:var(--body);">Customer time slots</div>
           </div>
         </div>
+        <!-- Connecting lines from all 3 boxes down to center -->
+        <div style="width:100%; height:32px; position:relative;">
+          <svg width="100%" height="32" viewBox="0 0 1120 32" preserveAspectRatio="none" style="display:block;">
+            <line x1="187" y1="0" x2="560" y2="32" stroke="#A78BFA" stroke-width="1.5"/>
+            <line x1="560" y1="0" x2="560" y2="32" stroke="#A78BFA" stroke-width="1.5"/>
+            <line x1="933" y1="0" x2="560" y2="32" stroke="#A78BFA" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <!-- Single generic box -->
+        <div style="width:100%; border:1.5px solid var(--purple-light); border-radius:12px; padding:18px 28px; text-align:center;">
+          <div style="font-family:Outfit,sans-serif; font-size:1.4rem; font-weight:700; color:var(--muted);">Same generic routing software</div>
+        </div>
       </div>
     </section>
 
-    <!-- 6. TRACTION -->
+    <!-- 3. COST — what this actually costs -->
+    <section data-background-color="#FDFCFB">
+      <div class="slide-body" style="align-items:flex-start; justify-content:center;">
+        <h2 style="font-size:3.4rem; margin:0; max-width:900px;"><span style="color:var(--purple);">45 minutes every morning</span> fixing routes by hand.</h2>
+      </div>
+    </section>
+
+    <!-- 4. SOLUTION + DEMO -->
+    <section data-background-color="#FDFCFB">
+      <div class="slide-body" style="align-items:flex-start; padding:48px 80px 32px;">
+        <h2 style="font-size:2.6rem; margin:0 0 20px;">It remembers what works.</h2>
+        <div style="width:100%; display:flex; justify-content:center;">
+          <video src="VIDEO-2026-03-18-16-53-23.mp4" controls playsinline style="width:100%; max-width:960px; max-height:420px; border-radius:12px; box-shadow:0 8px 32px rgba(26,16,37,0.12);"></video>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. TRACTION -->
     <section data-background-color="#FDFCFB">
       <div class="slide-body">
-        <h2 style="margin-top:20px; margin-bottom:0;">3 Paying Design Partners</h2>
-        <div style="display:flex; gap:24px; margin-top:36px; width:100%;">
+        <h2 style="margin-top:20px; margin-bottom:4px;">3 paying customers in 2 weeks.</h2>
+        <div style="display:flex; gap:24px; width:100%;">
           <div class="brand-card" style="flex:1; padding:28px 32px;">
             <div style="font-family:Outfit,sans-serif; font-size:1.7rem; font-weight:800; color:var(--text); margin-bottom:8px;">MyPup</div>
             <p style="font-size:1.5rem; color:var(--body); margin:0; line-height:1.5;">Last-mile parcel delivery to lockers</p>
@@ -168,37 +149,82 @@
             <p style="font-size:1.5rem; color:var(--body); margin:0; line-height:1.5;">Logistics and fulfillment operations</p>
           </div>
         </div>
-        <p style="font-size:1.3rem; color:var(--body); margin-top:32px;">40+ conversations with planners, managers and owners</p>
+      </div>
+    </section>
+
+    <!-- 6. WHY NOW -->
+    <section data-background-color="#FDFCFB">
+      <div class="slide-body" style="align-items:flex-start; justify-content:center;">
+        <h2 style="font-size:2.8rem; margin:0 0 40px;">Why now?</h2>
+        <div style="display:flex; flex-direction:column; gap:32px; max-width:800px;">
+          <div style="display:flex; align-items:center; gap:20px;">
+            <div style="font-family:Outfit,sans-serif; font-size:1.4rem; font-weight:800; color:var(--purple); flex-shrink:0;">01</div>
+            <div style="font-family:Outfit,sans-serif; font-size:1.6rem; font-weight:700; color:var(--text);">Zero-emission zones — 18 cities and growing</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:20px;">
+            <div style="font-family:Outfit,sans-serif; font-size:1.4rem; font-weight:800; color:var(--purple); flex-shrink:0;">02</div>
+            <div style="font-family:Outfit,sans-serif; font-size:1.6rem; font-weight:700; color:var(--text);">Customization that took months now takes minutes</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:20px;">
+            <div style="font-family:Outfit,sans-serif; font-size:1.4rem; font-weight:800; color:var(--purple); flex-shrink:0;">03</div>
+            <div style="font-family:Outfit,sans-serif; font-size:1.6rem; font-weight:700; color:var(--text);">No good option for small fleets</div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- 7. MARKET -->
     <section data-background-color="#FDFCFB">
       <div class="slide-body">
-        <h2 style="margin-top:20px; margin-bottom:0;">Total Addressable Market</h2>
+        <h2 style="margin-top:20px; margin-bottom:0;">Market</h2>
         <div style="display:flex; flex-direction:column; gap:16px; margin-top:40px; max-width:680px;">
           <div style="display:flex; align-items:center; gap:20px;">
-            <div style="width:160px; height:52px; border-radius:10px; background:var(--purple); display:flex; align-items:center; padding-left:20px; font-family:Outfit,sans-serif; font-weight:700; font-size:1.5rem; color:#fff; flex-shrink:0;">EUR 2.6M</div>
+            <div style="width:160px; height:52px; border-radius:10px; background:var(--purple); display:flex; align-items:center; padding-left:20px; font-family:Outfit,sans-serif; font-weight:700; font-size:1.5rem; color:#fff; flex-shrink:0;">EUR 500K</div>
             <div style="font-size:1.5rem; color:var(--body); white-space:nowrap;">Noord-Holland &nbsp;·&nbsp; starting here</div>
           </div>
           <div style="display:flex; align-items:center; gap:20px;">
-            <div style="width:340px; height:52px; border-radius:10px; background:var(--purple-50); border:1px solid rgba(124,58,237,0.25); display:flex; align-items:center; padding-left:20px; font-family:Outfit,sans-serif; font-weight:700; font-size:1.5rem; color:var(--purple); flex-shrink:0;">EUR 16M</div>
-            <div style="font-size:1.5rem; color:var(--body); white-space:nowrap;">Netherlands &nbsp;·&nbsp; 3K companies</div>
+            <div style="width:340px; height:52px; border-radius:10px; background:var(--purple-50); border:1px solid rgba(124,58,237,0.25); display:flex; align-items:center; padding-left:20px; font-family:Outfit,sans-serif; font-weight:700; font-size:1.5rem; color:var(--purple); flex-shrink:0;">EUR 3&ndash;6M</div>
+            <div style="font-size:1.5rem; color:var(--body); white-space:nowrap;">Netherlands &nbsp;·&nbsp; ~1,000 multi-vehicle SMEs</div>
           </div>
           <div style="display:flex; align-items:center; gap:20px;">
-            <div style="width:580px; height:52px; border-radius:10px; background:var(--purple-50); border:1px solid rgba(124,58,237,0.15); display:flex; align-items:center; padding-left:20px; font-family:Outfit,sans-serif; font-weight:700; font-size:1.5rem; color:var(--purple-light); flex-shrink:0;">EUR 300M+</div>
-            <div style="font-size:1.5rem; color:var(--body); white-space:nowrap;">Europe &nbsp;·&nbsp; 100K+ SME couriers</div>
+            <div style="width:580px; height:52px; border-radius:10px; background:var(--purple-50); border:1px solid rgba(124,58,237,0.15); display:flex; align-items:center; padding-left:20px; font-family:Outfit,sans-serif; font-weight:700; font-size:1.5rem; color:var(--purple-light); flex-shrink:0;">$1.3B+ &nbsp;(14% CAGR)</div>
+            <div style="font-size:1.5rem; color:var(--body); white-space:nowrap;">Europe &nbsp;·&nbsp; route optimization for SME logistics</div>
           </div>
         </div>
-        <p style="font-size:1.5rem; color:var(--muted); margin-top:28px;">~EUR 29 / vehicle / month &nbsp;·&nbsp; avg. 15 vehicles per SME</p>
+        <p style="font-size:1.3rem; color:var(--muted); margin-top:28px;">EUR 29 / vehicle / month</p>
       </div>
     </section>
 
-    <!-- 9. ASK / CLOSE -->
+    <!-- 8. TEAM -->
+    <section data-background-color="#FDFCFB">
+      <div class="slide-body">
+        <div style="display:flex; gap:28px; margin-top:28px; width:100%;">
+          <div class="brand-card" style="flex:1; padding:32px 36px;">
+            <img src="ferchtandiker.jpg" style="width:140px; height:140px; border-radius:50%; object-fit:cover; margin-bottom:16px;">
+            <div style="font-family:Outfit,sans-serif; font-size:1.5rem; font-weight:800; color:var(--text); margin-bottom:4px;">Nathan Ferchtandiker</div>
+            <div style="font-size:1.5rem; font-weight:600; color:var(--purple); margin-bottom:18px;">Optimization &amp; Data Science</div>
+            <div style="font-size:1.4rem; color:var(--body); line-height:1.8;">
+              Route optimization research at Stanford<br>
+              MSc Data Science &mdash; UvA
+            </div>
+          </div>
+          <div class="brand-card" style="flex:1; padding:32px 36px;">
+            <img src="puri.jpg" style="width:140px; height:140px; border-radius:50%; object-fit:cover; margin-bottom:16px;">
+            <div style="font-family:Outfit,sans-serif; font-size:1.5rem; font-weight:800; color:var(--text); margin-bottom:4px;">Daniel Puri</div>
+            <div style="font-size:1.5rem; font-weight:600; color:var(--purple); margin-bottom:18px;">Product &amp; Engineering</div>
+            <div style="font-size:1.4rem; color:var(--body); line-height:1.8;">
+              3 startups &mdash; products scaled to 26,000+ users<br>
+              BSc Business Admin
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. CLOSE + ASK -->
     <section data-background-color="#FDFCFB">
       <div class="slide-body" style="align-items:center; text-align:center;">
-        <p style="font-family:Outfit,sans-serif; font-size:2.4rem; font-weight:800; color:var(--purple); margin-bottom:8px;">Follow our journey &rarr;</p>
-        <p style="font-size:1.4rem; color:var(--body); margin-bottom:24px;">Come talk to us.</p>
+        <p style="font-family:Outfit,sans-serif; font-size:2.6rem; font-weight:800; color:var(--purple); margin-bottom:24px;">Let's talk.</p>
         <div style="display:flex; gap:64px; justify-content:center; align-items:flex-start;">
           <div style="text-align:center;">
             <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://www.linkedin.com/in/nathan-ferchtandiker-0768481ab/" width="200" height="200" style="border-radius:12px; border:2px solid var(--border);" />
@@ -231,1382 +257,6 @@ Reveal.initialize({
 const wm = document.querySelector('.brand-watermark');
 Reveal.on('slidechanged', (e) => { wm.style.display = e.indexh === 0 ? 'none' : 'block'; });
 if (Reveal.getIndices().h === 0) wm.style.display = 'none';
-
-(function () {
-  const W = 1280, H = 720;
-  const CX = W * 0.45, CY = H * 0.38;
-  const CENTER_R = 110;
-  const CCX = CX + 50, CCY = CY - 15;
-  const COLORS = ['#7C3AED','#A78BFA','#5B21B6','#9061F9','#C4B5FD'];
-
-  // ── Data ──
-  function inC(s) { return Math.hypot(s.x-CCX, s.y-CCY) < CENTER_R - 5; }
-
-  function wpFrom(stops) {
-    const pts = [{x:CX,y:CY}]; let prev = {x:CX,y:CY};
-    stops.forEach(s => {
-      if (Math.abs(s.x-prev.x) > Math.abs(s.y-prev.y)) pts.push({x:s.x,y:prev.y});
-      else pts.push({x:prev.x,y:s.y});
-      pts.push({x:s.x,y:s.y}); prev = s;
-    });
-    return pts;
-  }
-  function mk(stops,color,spd) {
-    return { wp:wpFrom(stops), stops, color, pos:Math.random()*0.3, spd:spd||0.05, dir:1 };
-  }
-
-  const origRoutes = [
-    mk([{x:CCX+40,y:CCY-40},{x:CX+190,y:CY-110},{x:CX+270,y:CY-65},{x:CX+300,y:CY-130}], COLORS[0], 0.05),
-    mk([{x:CCX-75,y:CCY-10},{x:CX-140,y:CY-90},{x:CX-220,y:CY-55},{x:CX-290,y:CY-120}], COLORS[1], 0.052),
-    mk([{x:CCX+60,y:CCY+35},{x:CX+200,y:CY+70},{x:CX+260,y:CY+140},{x:CX+210,y:CY+200}], COLORS[2], 0.048),
-    mk([{x:CX-50,y:CY+110},{x:CX-130,y:CY+180},{x:CX+20,y:CY+220},{x:CX-70,y:CY+270}], COLORS[3], 0.05),
-    mk([{x:CCX-30,y:CCY+50},{x:CCX+10,y:CCY-20},{x:CX-160,y:CY+90},{x:CX-240,y:CY+150}], COLORS[4], 0.047),
-  ];
-
-  const centerStops = [], outerStops = [];
-  origRoutes.forEach(r => r.stops.forEach(s => (inC(s) ? centerStops : outerStops).push(s)));
-
-  const bk = [...centerStops];
-  if (bk.length > 3) { const t = bk[1]; bk[1] = bk[3]; bk[3] = t; }
-  const bikeRoute = mk(bk, '#f59e0b', 0.055);
-
-  // Manual routes: deliberately inefficient — stops cross regions, creating zigzag/backtracking
-  const east = outerStops.filter(s => s.x > CX + 100);
-  const west = outerStops.filter(s => s.x < CX - 80);
-  const south = outerStops.filter(s => !east.includes(s) && !west.includes(s));
-  const truckRoutes = [mk(east,'#7C3AED',0.045), mk(west,'#A78BFA',0.042), mk(south,COLORS[3],0.048)];
-
-  const allStops = []; origRoutes.forEach(r => allStops.push(...r.stops));
-
-  // ── Segment intersection helper ──
-  function segIntersect(p1,p2,p3,p4) {
-    const d = (p2.x-p1.x)*(p4.y-p3.y)-(p2.y-p1.y)*(p4.x-p3.x);
-    if (Math.abs(d) < 0.01) return null;
-    const t = ((p3.x-p1.x)*(p4.y-p3.y)-(p3.y-p1.y)*(p4.x-p3.x)) / d;
-    const u = ((p3.x-p1.x)*(p2.y-p1.y)-(p3.y-p1.y)*(p2.x-p1.x)) / d;
-    if (t >= 0.05 && t <= 0.95 && u >= 0.05 && u <= 0.95) {
-      return { x: p1.x + t*(p2.x-p1.x), y: p1.y + t*(p2.y-p1.y) };
-    }
-    return null;
-  }
-
-  // ── Drawing helpers ──
-  function lerp(pts,t) {
-    t = Math.max(0,Math.min(1,t));
-    const n = pts.length-1, f = t*n, seg = Math.min(Math.floor(f),n-1), lt = f-seg;
-    return { x:pts[seg].x+(pts[seg+1].x-pts[seg].x)*lt, y:pts[seg].y+(pts[seg+1].y-pts[seg].y)*lt };
-  }
-  function adv(r,dt) {
-    if (!r.dir) return;
-    r.pos += r.spd * dt * r.dir;
-    if (r.pos >= 1) { r.pos = 1; r.dir = -1; }
-    if (r.pos <= 0) { r.pos = 0; r.dir = 1; }
-  }
-
-  function drawMap(ctx, phase, now, dt, phaseAge) {
-    ctx.clearRect(0, 0, W, H);
-
-    // Grid
-    ctx.save(); ctx.strokeStyle = 'rgba(0,0,0,0.04)'; ctx.lineWidth = 1;
-    for (let x = 0; x < W; x += 55) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
-    for (let y = 0; y < H; y += 55) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
-    ctx.restore();
-
-    // Edge fade on all 4 sides
-    const edgeSize = 80;
-    const bgCol = 'rgba(253,252,251,';
-    ctx.save();
-    let g = ctx.createLinearGradient(0, 0, 0, edgeSize);
-    g.addColorStop(0, bgCol + '1)'); g.addColorStop(1, bgCol + '0)');
-    ctx.fillStyle = g; ctx.fillRect(0, 0, W, edgeSize);
-    g = ctx.createLinearGradient(0, 0, edgeSize, 0);
-    g.addColorStop(0, bgCol + '1)'); g.addColorStop(1, bgCol + '0)');
-    ctx.fillStyle = g; ctx.fillRect(0, 0, edgeSize, H);
-    g = ctx.createLinearGradient(W, 0, W - edgeSize, 0);
-    g.addColorStop(0, bgCol + '1)'); g.addColorStop(1, bgCol + '0)');
-    ctx.fillStyle = g; ctx.fillRect(W - edgeSize, 0, edgeSize, H);
-    g = ctx.createLinearGradient(0, H, 0, H - edgeSize);
-    g.addColorStop(0, bgCol + '1)'); g.addColorStop(1, bgCol + '0)');
-    ctx.fillStyle = g; ctx.fillRect(0, H - edgeSize, W, edgeSize);
-    ctx.restore();
-
-    // Helpers
-    function hub(col) {
-      ctx.save();
-      ctx.beginPath(); ctx.arc(CX,CY,34,0,Math.PI*2); ctx.fillStyle=col; ctx.globalAlpha=0.08; ctx.fill();
-      ctx.beginPath(); ctx.arc(CX,CY,22,0,Math.PI*2); ctx.strokeStyle=col; ctx.lineWidth=3; ctx.globalAlpha=0.5; ctx.stroke();
-      ctx.beginPath(); ctx.arc(CX,CY,10,0,Math.PI*2); ctx.fillStyle=col; ctx.globalAlpha=1; ctx.fill();
-      ctx.fillStyle='#FDFCFB'; ctx.globalAlpha=0.9;
-      ctx.fillRect(CX-5,CY-2,10,7);
-      ctx.beginPath(); ctx.moveTo(CX-6,CY-2); ctx.lineTo(CX,CY-7.5); ctx.lineTo(CX+6,CY-2); ctx.closePath(); ctx.fill();
-      ctx.restore();
-    }
-    function dot(x,y,col,r,a) {
-      ctx.save();
-      ctx.beginPath(); ctx.arc(x,y,r+7,0,Math.PI*2); ctx.fillStyle=col; ctx.globalAlpha=a*0.12; ctx.fill();
-      ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fillStyle=col; ctx.globalAlpha=a*0.9; ctx.fill();
-      ctx.restore();
-    }
-    function stp(s,i,col,a) {
-      dot(s.x,s.y,col,6,a);
-      ctx.save(); ctx.font='600 10px Outfit,sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
-      ctx.fillStyle='#FDFCFB'; ctx.globalAlpha=a*0.95; ctx.fillText(i+1,s.x,s.y+0.5); ctx.restore();
-    }
-    function ln(r,a,w) {
-      ctx.save(); ctx.strokeStyle=r.color; ctx.globalAlpha=a; ctx.lineWidth=w*1.5;
-      ctx.lineJoin='round'; ctx.lineCap='round';
-      ctx.beginPath(); ctx.moveTo(r.wp[0].x,r.wp[0].y);
-      for (let j=1;j<r.wp.length;j++) ctx.lineTo(r.wp[j].x,r.wp[j].y);
-      ctx.stroke(); ctx.restore();
-    }
-    function dsh(r,a,w) {
-      ctx.save(); ctx.strokeStyle=r.color; ctx.globalAlpha=a; ctx.lineWidth=w*1.5;
-      ctx.lineJoin='round'; ctx.lineCap='round'; ctx.setLineDash([8,12]);
-      ctx.beginPath(); ctx.moveTo(r.wp[0].x,r.wp[0].y);
-      for (let j=1;j<r.wp.length;j++) ctx.lineTo(r.wp[j].x,r.wp[j].y);
-      ctx.stroke(); ctx.restore();
-    }
-    function partial(r, prog, a, w) {
-      if (prog <= 0) return;
-      const pts = r.wp, n = pts.length-1, d = prog*n;
-      ctx.save(); ctx.strokeStyle=r.color; ctx.globalAlpha=a; ctx.lineWidth=w*1.5;
-      ctx.lineJoin='round'; ctx.lineCap='round';
-      ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y);
-      for (let j=1; j<=Math.ceil(d) && j<pts.length; j++) {
-        if (j <= Math.floor(d)) ctx.lineTo(pts[j].x, pts[j].y);
-        else { const f=d-Math.floor(d), pv=pts[j-1]; ctx.lineTo(pv.x+(pts[j].x-pv.x)*f, pv.y+(pts[j].y-pv.y)*f); }
-      }
-      ctx.stroke(); ctx.restore();
-    }
-    function trk(r,col) {
-      const pt=lerp(r.wp,r.pos);
-      ctx.save();
-      ctx.beginPath(); ctx.arc(pt.x,pt.y,13,0,Math.PI*2); ctx.fillStyle=col; ctx.globalAlpha=0.15; ctx.fill();
-      ctx.beginPath(); ctx.arc(pt.x,pt.y,6,0,Math.PI*2); ctx.fillStyle=col; ctx.globalAlpha=1; ctx.fill();
-      ctx.restore();
-    }
-    function smallTrk(r,col) {
-      const pt=lerp(r.wp,r.pos);
-      ctx.save();
-      ctx.beginPath(); ctx.arc(pt.x,pt.y,10,0,Math.PI*2); ctx.fillStyle=col; ctx.globalAlpha=0.15; ctx.fill();
-      ctx.beginPath(); ctx.arc(pt.x,pt.y,5,0,Math.PI*2); ctx.fillStyle=col; ctx.globalAlpha=1; ctx.fill();
-      ctx.restore();
-    }
-    function bike(r,col) {
-      const pt=lerp(r.wp,r.pos);
-      ctx.save();
-      ctx.beginPath(); ctx.arc(pt.x,pt.y,12,0,Math.PI*2); ctx.fillStyle=col; ctx.globalAlpha=0.18; ctx.fill();
-      ctx.beginPath(); ctx.moveTo(pt.x,pt.y-6); ctx.lineTo(pt.x+5,pt.y); ctx.lineTo(pt.x,pt.y+6); ctx.lineTo(pt.x-5,pt.y); ctx.closePath();
-      ctx.fillStyle=col; ctx.globalAlpha=1; ctx.fill();
-      ctx.restore();
-    }
-    function zone(hl) {
-      ctx.save();
-      ctx.beginPath(); ctx.arc(CCX,CCY,CENTER_R,0,Math.PI*2);
-      ctx.setLineDash([8,6]);
-      ctx.strokeStyle = hl ? '#7C3AED' : 'rgba(0,0,0,0.12)';
-      ctx.lineWidth = hl ? 2.5 : 1.5;
-      ctx.globalAlpha = hl ? 0.6+Math.sin(now*0.004)*0.2 : 0.4;
-      ctx.stroke(); ctx.setLineDash([]);
-      ctx.beginPath(); ctx.arc(CCX,CCY,CENTER_R,0,Math.PI*2);
-      ctx.fillStyle = hl ? 'rgba(220,38,38,0.06)' : 'rgba(0,0,0,0.02)';
-      ctx.globalAlpha = 1; ctx.fill();
-      ctx.font = '600 13px Outfit,sans-serif'; ctx.textAlign = 'center';
-      ctx.fillStyle = hl ? '#7C3AED' : 'rgba(0,0,0,0.3)';
-      ctx.globalAlpha = hl ? 0.85 : 0.5;
-      ctx.fillText('CITY CENTER', CCX, CCY - CENTER_R - 10);
-      ctx.restore();
-    }
-    function hud(l1,c1,l2,c2,a1,a2) {
-      ctx.save(); ctx.textAlign='right';
-      ctx.font='600 16px Outfit,sans-serif'; ctx.fillStyle=c1; ctx.globalAlpha=a1; ctx.fillText(l1,W-36,34);
-      ctx.font='500 13px DM Sans,sans-serif'; ctx.fillStyle=c2; ctx.globalAlpha=a2; ctx.fillText(l2,W-36,52);
-      ctx.restore();
-    }
-
-    // Bottom text overlay with scrim
-    function slideText(tag, tagColor, title, subtitle) {
-      const grad = ctx.createLinearGradient(0, H*0.55, 0, H);
-      grad.addColorStop(0, 'rgba(253,252,251,0)');
-      grad.addColorStop(0.4, 'rgba(253,252,251,0.8)');
-      grad.addColorStop(1, 'rgba(253,252,251,0.97)');
-      ctx.save(); ctx.fillStyle = grad; ctx.fillRect(0, H*0.55, W, H*0.45); ctx.restore();
-
-      const x = 52, baseY = H - 48;
-      ctx.save();
-      ctx.font = '700 13px Outfit,sans-serif'; ctx.textAlign = 'left';
-      ctx.fillStyle = tagColor; ctx.globalAlpha = 0.9;
-      ctx.fillText(tag.toUpperCase(), x, baseY - 62);
-      ctx.restore();
-      ctx.save();
-      ctx.font = '800 38px Outfit,sans-serif'; ctx.textAlign = 'left';
-      ctx.fillStyle = '#1A1025'; ctx.globalAlpha = 1;
-      ctx.fillText(title, x, baseY - 24);
-      ctx.restore();
-      if (subtitle) {
-        ctx.save();
-        ctx.font = '400 18px DM Sans,sans-serif'; ctx.textAlign = 'left';
-        ctx.fillStyle = '#4B3F5E'; ctx.globalAlpha = 0.9;
-        ctx.fillText(subtitle, x, baseY + 2);
-        ctx.restore();
-      }
-    }
-
-    // ════ CUMULATIVE DRAWING ════
-    const pi = phases.indexOf(phase);
-    const fade = (start, dur) => Math.min(1, Math.max(0, (phaseAge - start) / dur));
-    const ease = Math.min(1, phaseAge / 1500);
-
-    // ── Layer 1: Hub color ──
-    const hubColor = '#7C3AED';
-
-    // ── Layer 2: Delivery points (fade in during phase 0) ──
-    const dotsAlpha = pi === 0 ? ease : 1;
-    if (pi < 3) {
-      allStops.forEach((s, i) => {
-        const stagger = pi === 0 ? Math.min(1, Math.max(0, (phaseAge - i*40) / 500)) : 1;
-        const a = dotsAlpha * stagger;
-        if (pi >= 2) {
-          const ic = inC(s);
-          const routeColor = origRoutes.find(r => r.stops.includes(s))?.color || '#4B3F5E';
-          dot(s.x, s.y, ic ? '#7C3AED' : (pi < 1 ? '#4B3F5E' : routeColor), 5, ic ? a*0.9 : a * (pi >= 2 && !ic ? 0.5 : 0.8));
-        } else if (pi >= 1) {
-          const routeColor = origRoutes.find(r => r.stops.includes(s))?.color || '#4B3F5E';
-          dot(s.x, s.y, lerpColor('#4B3F5E', routeColor, ease), 5, a * 0.8);
-        } else {
-          dot(s.x, s.y, '#4B3F5E', 5, a * 0.7);
-        }
-      });
-    }
-
-    // ── Layer 3: City center zone (fades in phase 2) ──
-    if (pi >= 2 && pi < 4) {
-      const zoneProg = pi === 2 ? Math.min(1, ease * 2) : 1;
-      zone(zoneProg > 0.2);
-    }
-
-    // ── Layer 4: Routes (draw in phase 1, transition to dashed in phase 2) ──
-    if (pi >= 1 && pi < 3) {
-      const problemT = pi === 2 ? Math.max(0, (ease * 2) - 1) : 0;
-
-      origRoutes.forEach((r, i) => {
-        adv(r, dt);
-        if (pi === 1) {
-          const rElapsed = phaseAge - i * 350;
-          const prog = rElapsed < 0 ? 0 : Math.min(1, rElapsed / 1200);
-          partial(r, prog, 0.45, 2);
-          r.stops.forEach((s, si) => {
-            const st = (si+1) / r.stops.length;
-            if (prog >= st*0.7) stp(s, si, r.color, Math.min(1, (prog-st*0.7)/0.3));
-          });
-          if (prog > 0.4) { r.pos = Math.min(r.pos, prog); }
-        } else {
-          const hasC = r.stops.some(s => inC(s));
-          if (hasC && problemT > 0) {
-            if (problemT < 1) ln(r, 0.4 * (1 - problemT), 2);
-            dsh(r, 0.3 * problemT, 2);
-          } else {
-            ln(r, hasC ? 0.4 * (1 - problemT) : 0.25, 2);
-          }
-          r.stops.forEach((s, si) => {
-            const ic = inC(s);
-            if (ic) {
-              const col = problemT > 0.5 ? '#7C3AED' : r.color;
-              stp(s, si, col, 0.5 + problemT * 0.4);
-            } else {
-              stp(s, si, r.color, hasC ? 0.8 - problemT * 0.35 : 0.8);
-            }
-          });
-          // (vehicles removed)
-        }
-      });
-    }
-
-    // ── Layer 5: Manual routes (phase 3) — crossfade edit ──
-    if (pi === 3) {
-      const crossfade = Math.min(1, phaseAge / 1200);
-
-      // Original routes: center-touching ones go dashed and fade, others just dim
-      origRoutes.forEach(r => {
-        adv(r, dt);
-        const hasC = r.stops.some(s => inC(s));
-        if (hasC) {
-          const a = 0.3 * (1 - crossfade);
-          if (a > 0.02) dsh(r, a, 1.5);
-        } else {
-          ln(r, 0.2 * (1 - crossfade * 0.6), 1.5);
-        }
-      });
-
-      // Bike route draws in over center stops (feels like stops being reassigned)
-      const bikeProg = Math.min(1, Math.max(0, phaseAge / 800));
-      adv(bikeRoute, dt);
-      partial(bikeRoute, bikeProg, 0.55 * bikeProg, 1.5);
-      bikeRoute.stops.forEach((s, si) => {
-        const st = (si+1) / bikeRoute.stops.length;
-        if (bikeProg >= st * 0.7) stp(s, si, '#f59e0b', Math.min(1, (bikeProg - st*0.7) / 0.3));
-      });
-      // (bike vehicle removed)
-
-      // Truck routes draw in staggered (overlaid on dimming originals)
-      truckRoutes.forEach((r, i) => {
-        const truckStart = 400 + i * 350;
-        const truckElapsed = phaseAge - truckStart;
-        const truckProg = truckElapsed < 0 ? 0 : Math.min(1, truckElapsed / 800);
-        if (truckProg > 0) {
-          adv(r, dt);
-          partial(r, truckProg, 0.45 * truckProg, 2);
-          r.stops.forEach((s, si) => {
-            const st = (si+1) / r.stops.length;
-            if (truckProg >= st * 0.7) stp(s, si, r.color, Math.min(1, (truckProg - st*0.7) / 0.3) * 0.8);
-          });
-          // (truck vehicle removed)
-        }
-      });
-
-      // X-marks at route intersections
-      const postDrawA = Math.min(1, Math.max(0, (phaseAge - 2000) / 800));
-      if (postDrawA > 0) {
-        for (let a = 0; a < truckRoutes.length; a++) {
-          for (let b = a+1; b < truckRoutes.length; b++) {
-            const ra = truckRoutes[a].wp, rb = truckRoutes[b].wp;
-            for (let i=1; i<ra.length; i++) {
-              for (let j=1; j<rb.length; j++) {
-                const ix = segIntersect(ra[i-1],ra[i],rb[j-1],rb[j]);
-                if (ix) {
-                  ctx.save(); ctx.globalAlpha = postDrawA * 0.85;
-                  ctx.strokeStyle = '#7C3AED'; ctx.lineWidth = 2.5; ctx.lineCap = 'round';
-                  const sz = 6;
-                  ctx.beginPath(); ctx.moveTo(ix.x-sz,ix.y-sz); ctx.lineTo(ix.x+sz,ix.y+sz); ctx.stroke();
-                  ctx.beginPath(); ctx.moveTo(ix.x+sz,ix.y-sz); ctx.lineTo(ix.x-sz,ix.y+sz); ctx.stroke();
-                  ctx.beginPath(); ctx.arc(ix.x,ix.y,12,0,Math.PI*2);
-                  ctx.strokeStyle = '#7C3AED'; ctx.lineWidth = 1.5; ctx.globalAlpha = postDrawA * 0.3 + Math.sin(now*0.005)*0.15;
-                  ctx.stroke();
-                  ctx.restore();
-                }
-              }
-            }
-          }
-        }
-      }
-
-      // (stat box removed)
-    }
-
-    // ── Layer 6: Problems panel (phase 4) ──
-    if (pi === 4) {
-      // Full white background
-      ctx.save();
-      ctx.fillStyle = 'rgba(253,252,251,0.97)';
-      ctx.fillRect(0, 0, W, H);
-      ctx.restore();
-
-      // Left side: problem statement
-      const leftA = fade(0, 500);
-      if (leftA > 0) {
-        ctx.save(); ctx.globalAlpha = leftA;
-        const lx = 60, ly = 140;
-
-        ctx.font = '700 16px Outfit,sans-serif'; ctx.textAlign = 'left';
-        ctx.fillStyle = '#7C3AED';
-        ctx.fillText('THE PROBLEM', lx, ly);
-
-        ctx.font = '900 52px Outfit,sans-serif'; ctx.fillStyle = '#1A1025';
-        ctx.fillText('Route planning', lx, ly + 60);
-        ctx.fillText('software is', lx, ly + 120);
-        ctx.font = '900 52px Outfit,sans-serif'; ctx.fillStyle = '#7C3AED';
-        ctx.fillText('broken.', lx, ly + 180);
-
-        ctx.font = '400 22px DM Sans,sans-serif'; ctx.fillStyle = '#4B3F5E';
-        ctx.fillText('Every company has unique operations.', lx, ly + 230);
-        ctx.fillText('Current software treats them all the same.', lx, ly + 258);
-
-        ctx.restore();
-      }
-
-      // Right-side panel
-      const problems = [
-        ['Generic algorithm',          'Every company gets the same algo while operations differ wildly.'],
-        ['Long dev cycles',            'Customizing the algorithm takes months of development time.'],
-        ['Suboptimal routes',          'Manual workarounds add extra kilometers every day.'],
-        ['No real-time updates',      'When things change mid-day, the plan breaks. No automatic adjustment.'],
-        ['~45 min spent daily',       'Planners rebuild routes from scratch every single morning.'],
-      ];
-
-      const panelX = 660, panelA = fade(0, 300);
-      const tx = 740;
-      ctx.save(); ctx.globalAlpha = panelA * 0.92;
-      const pg = ctx.createLinearGradient(panelX, 0, W, 0);
-      pg.addColorStop(0, 'rgba(253,252,251,0)');
-      pg.addColorStop(0.18, 'rgba(253,252,251,0.97)');
-      pg.addColorStop(1, 'rgba(253,252,251,0.97)');
-      ctx.fillStyle = pg; ctx.fillRect(panelX, 0, W - panelX, H);
-      ctx.restore();
-
-      // ── Section 1: Causes ──
-      ctx.save();
-      ctx.font = '700 16px Outfit,sans-serif'; ctx.textAlign = 'left';
-      ctx.fillStyle = '#5B21B6';
-      ctx.fillText('CAUSES', tx, 100);
-      ctx.restore();
-
-      // Problem items
-      const problemItems = problems.slice(0, 2);
-      problemItems.forEach(([title, desc], i) => {
-        const py = 175 + i * 55;
-
-        ctx.save();
-        const xi = tx, yi = py + 2;
-        ctx.strokeStyle = '#7C3AED'; ctx.lineWidth = 3; ctx.lineCap = 'round';
-        const sz = 9;
-        ctx.beginPath(); ctx.moveTo(xi-sz, yi-sz); ctx.lineTo(xi+sz, yi+sz); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(xi+sz, yi-sz); ctx.lineTo(xi-sz, yi+sz); ctx.stroke();
-
-        ctx.font = '700 26px Outfit,sans-serif'; ctx.fillStyle = '#1A1025';
-        ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
-        ctx.fillText(title, tx + 30, py + 10);
-        ctx.restore();
-      });
-
-      // ── Section 2: Implications ──
-      ctx.save();
-      // Divider line
-      ctx.beginPath(); ctx.moveTo(tx, 310); ctx.lineTo(W - 40, 310);
-      ctx.strokeStyle = '#E6E1DC'; ctx.lineWidth = 1; ctx.stroke();
-
-      ctx.font = '700 16px Outfit,sans-serif'; ctx.textAlign = 'left';
-      ctx.fillStyle = '#A78BFA';
-      ctx.fillText('IMPLICATIONS', tx, 340);
-      ctx.restore();
-
-      // Implication items
-      const implItems = problems.slice(2);
-      implItems.forEach(([title, desc], i) => {
-        const py = 405 + i * 55;
-
-        ctx.save();
-        const xi = tx, yi = py + 2;
-        ctx.strokeStyle = '#A78BFA'; ctx.lineWidth = 3; ctx.lineCap = 'round';
-        ctx.beginPath(); ctx.moveTo(xi-9, yi); ctx.lineTo(xi+9, yi); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(xi+3, yi-6); ctx.lineTo(xi+9, yi); ctx.lineTo(xi+3, yi+6); ctx.stroke();
-
-        ctx.font = '700 26px Outfit,sans-serif'; ctx.fillStyle = '#1A1025';
-        ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
-        ctx.fillText(title, tx + 30, py + 10);
-        ctx.restore();
-      });
-    }
-
-    if (pi !== 4) hub(hubColor);
-
-    // ── Right-side explaining text (phases 0–3) ──
-    if (pi <= 3) {
-      const texts = [
-        { title: 'Making a Delivery Route', lines: ['32 stops. 5 vehicles.', 'Dispatcher plans the route.',] },
-        { title: 'Software Generates Routes', lines: ['On paper, it looks great...'] },
-        { title: 'But The Algo Does Not Know', cycle: true, allLines: [
-          'Bikes must handle downtown.',
-          'Bars after 3 PM.',
-          'Drivers know their zones.',
-          '...'
-        ] },
-        { title: 'Manual Adjustments', lines: ['Create suboptimal routes.', 'Make deliveries inefficient.', 'Every single day.'] },
-      ];
-      const txt = texts[pi];
-      const rx = W - 320, ry = H * 0.32;
-      const txtA = fade(pi === 0 ? 400 : 300, 600);
-
-      if (txtA > 0) {
-        // Determine lines to show
-        let visibleLines;
-        if (txt.cycle) {
-          const blockSize = 5;
-          const cycleDur = 2000;
-          const blockIdx = Math.floor(phaseAge / cycleDur) % Math.ceil(txt.allLines.length / blockSize);
-          const start = blockIdx * blockSize;
-          visibleLines = txt.allLines.slice(start, start + blockSize);
-        } else {
-          visibleLines = txt.lines;
-        }
-
-        // Subtle background
-        ctx.save();
-        ctx.beginPath(); ctx.roundRect(rx - 20, ry - 20, 310, 30 + visibleLines.length * 30, 12);
-        ctx.fillStyle = 'rgba(253,252,251,0.85)'; ctx.globalAlpha = txtA * 0.9; ctx.fill();
-        ctx.restore();
-
-        ctx.save(); ctx.globalAlpha = txtA;
-        ctx.font = '700 24px Outfit,sans-serif'; ctx.textAlign = 'left';
-        ctx.fillStyle = '#1A1025';
-        ctx.fillText(txt.title, rx, ry);
-
-        ctx.font = '400 19px DM Sans,sans-serif'; ctx.fillStyle = '#4B3F5E';
-        visibleLines.forEach((line, i) => {
-          ctx.fillText(line, rx, ry + 32 + i * 30);
-        });
-        ctx.restore();
-      }
-    }
-  }
-
-  function drawMap_OLD(ctx, phase, now, dt, phaseAge) {
-    ctx.clearRect(0, 0, W, H);
-
-    // Grid
-    ctx.save(); ctx.strokeStyle = 'rgba(0,0,0,0.04)'; ctx.lineWidth = 1;
-    for (let x = 0; x < W; x += 55) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
-    for (let y = 0; y < H; y += 55) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
-    ctx.restore();
-
-    // Edge fades
-    const edgeSize = 80;
-    const bgCol = 'rgba(253,252,251,';
-    ctx.save();
-    let g = ctx.createLinearGradient(0, 0, 0, edgeSize);
-    g.addColorStop(0, bgCol+'1)'); g.addColorStop(1, bgCol+'0)');
-    ctx.fillStyle = g; ctx.fillRect(0, 0, W, edgeSize);
-    g = ctx.createLinearGradient(0, 0, edgeSize, 0);
-    g.addColorStop(0, bgCol+'1)'); g.addColorStop(1, bgCol+'0)');
-    ctx.fillStyle = g; ctx.fillRect(0, 0, edgeSize, H);
-    g = ctx.createLinearGradient(W, 0, W-edgeSize, 0);
-    g.addColorStop(0, bgCol+'1)'); g.addColorStop(1, bgCol+'0)');
-    ctx.fillStyle = g; ctx.fillRect(W-edgeSize, 0, edgeSize, H);
-    g = ctx.createLinearGradient(0, H, 0, H-edgeSize);
-    g.addColorStop(0, bgCol+'1)'); g.addColorStop(1, bgCol+'0)');
-    ctx.fillStyle = g; ctx.fillRect(0, H-edgeSize, W, edgeSize);
-    ctx.restore();
-
-    // Helpers
-    function hub() {
-      const p = 1 + Math.sin(now*0.003)*0.12;
-      ctx.save();
-      ctx.beginPath(); ctx.arc(CX,CY,34*p,0,Math.PI*2); ctx.fillStyle='#7C3AED'; ctx.globalAlpha=0.08; ctx.fill();
-      ctx.beginPath(); ctx.arc(CX,CY,22,0,Math.PI*2); ctx.strokeStyle='#7C3AED'; ctx.lineWidth=3; ctx.globalAlpha=0.5; ctx.stroke();
-      ctx.beginPath(); ctx.arc(CX,CY,10,0,Math.PI*2); ctx.fillStyle='#7C3AED'; ctx.globalAlpha=1; ctx.fill();
-      ctx.fillStyle='#FDFCFB'; ctx.globalAlpha=0.9;
-      ctx.fillRect(CX-5,CY-2,10,7);
-      ctx.beginPath(); ctx.moveTo(CX-6,CY-2); ctx.lineTo(CX,CY-7.5); ctx.lineTo(CX+6,CY-2); ctx.closePath(); ctx.fill();
-      ctx.restore();
-    }
-    function dot(x,y,col,r,a) {
-      ctx.save();
-      ctx.beginPath(); ctx.arc(x,y,r+7,0,Math.PI*2); ctx.fillStyle=col; ctx.globalAlpha=a*0.12; ctx.fill();
-      ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fillStyle=col; ctx.globalAlpha=a*0.9; ctx.fill();
-      ctx.restore();
-    }
-    function stp(s,i,col,a) {
-      dot(s.x,s.y,col,6,a);
-      ctx.save(); ctx.font='600 10px Outfit,sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
-      ctx.fillStyle='#FDFCFB'; ctx.globalAlpha=a*0.95; ctx.fillText(i+1,s.x,s.y+0.5); ctx.restore();
-    }
-    function ln(r,a,w) {
-      ctx.save(); ctx.strokeStyle=r.color; ctx.globalAlpha=a; ctx.lineWidth=w*1.5;
-      ctx.lineJoin='round'; ctx.lineCap='round';
-      ctx.beginPath(); ctx.moveTo(r.wp[0].x,r.wp[0].y);
-      for (let j=1;j<r.wp.length;j++) ctx.lineTo(r.wp[j].x,r.wp[j].y);
-      ctx.stroke(); ctx.restore();
-    }
-    function smallTrk(r, a) {
-      a = a === undefined ? 1 : a;
-      const pt=lerp(r.wp,r.pos);
-      ctx.save();
-      ctx.beginPath(); ctx.arc(pt.x,pt.y,10,0,Math.PI*2); ctx.fillStyle=r.color; ctx.globalAlpha=0.15*a; ctx.fill();
-      ctx.beginPath(); ctx.arc(pt.x,pt.y,5,0,Math.PI*2); ctx.fillStyle=r.color; ctx.globalAlpha=a; ctx.fill();
-      ctx.restore();
-    }
-
-    const pi = ['stops','routes','editing','problems'].indexOf(phase);
-    const fade = (start, dur) => Math.min(1, Math.max(0, (phaseAge - start) / dur));
-
-    // Map dims slightly when problems panel is shown
-    const mapA = pi === 3 ? Math.max(0.55, 1 - fade(0, 500) * 0.45) : 1;
-
-    // ── Phase 0: STOPS ONLY ──
-    if (pi === 0) {
-      origRoutes.forEach((r, ri) => {
-        const routeDelay = ri * 150;
-        r.stops.forEach((s, si) => {
-          const a = fade(routeDelay + si * 80, 400);
-          if (a > 0) dot(s.x, s.y, '#8B7FA3', 6, a);
-        });
-      });
-    }
-
-    // ── Phase 1: ROUTES DRAW IN ──
-    if (pi === 1) {
-      origRoutes.forEach((r, ri) => {
-        const routeDelay = ri * 400;
-        const drawProg = Math.min(1, Math.max(0, (phaseAge - routeDelay) / 1200));
-        if (drawProg > 0) {
-          const pts = r.wp, n = pts.length - 1, d = drawProg * n;
-          ctx.save(); ctx.strokeStyle = r.color; ctx.globalAlpha = 0.45; ctx.lineWidth = 3;
-          ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-          ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y);
-          for (let j = 1; j <= Math.ceil(d) && j < pts.length; j++) {
-            if (j <= Math.floor(d)) ctx.lineTo(pts[j].x, pts[j].y);
-            else { const f = d - Math.floor(d), pv = pts[j-1]; ctx.lineTo(pv.x + (pts[j].x - pv.x)*f, pv.y + (pts[j].y - pv.y)*f); }
-          }
-          ctx.stroke(); ctx.restore();
-          r.stops.forEach((s, si) => {
-            const st = (si + 1) / r.stops.length;
-            if (drawProg >= st * 0.7) stp(s, si, r.color, Math.min(1, (drawProg - st*0.7) / 0.3));
-          });
-          if (drawProg > 0.4) { adv(r, dt); smallTrk(r); }
-        }
-      });
-    }
-
-    // ── Phase 3: FULL ROUTES (problems) ──
-    if (pi === 3) {
-      origRoutes.forEach((r) => {
-        adv(r, dt);
-        ln(r, 0.45 * mapA, 2);
-        r.stops.forEach((s, si) => stp(s, si, r.color, 0.8 * mapA));
-        smallTrk(r, mapA);
-      });
-    }
-
-    hub();
-
-    // ── (disruptions — disabled) ──
-    if (false) {
-      // Disruption 1 — Road closure on route 0 segment 3-4
-      const d1a = fade(200, 300);
-      if (d1a > 0) {
-        const r0 = origRoutes[0];
-        const si = 3; // segment index in waypoints
-        const p1 = r0.wp[si], p2 = r0.wp[si+1];
-        const mx = (p1.x+p2.x)/2, my = (p1.y+p2.y)/2;
-        // Red dashed overlay on segment
-        ctx.save(); ctx.globalAlpha = d1a * 0.8;
-        ctx.strokeStyle = '#7C3AED'; ctx.lineWidth = 4;
-        ctx.setLineDash([8, 6]);
-        ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
-        ctx.setLineDash([]);
-        // Pulsing red glow on segment
-        ctx.globalAlpha = d1a * (0.2 + 0.1 * Math.sin(now * 0.005));
-        ctx.strokeStyle = '#7C3AED'; ctx.lineWidth = 10;
-        ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
-        // Road closed icon at midpoint
-        ctx.globalAlpha = d1a;
-        ctx.beginPath(); ctx.arc(mx, my, 12, 0, Math.PI*2);
-        ctx.fillStyle = '#7C3AED'; ctx.fill();
-        ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
-        // White bar inside circle
-        ctx.beginPath(); ctx.moveTo(mx-6, my); ctx.lineTo(mx+6, my);
-        ctx.strokeStyle = '#fff'; ctx.lineWidth = 2.5; ctx.stroke();
-        ctx.restore();
-      }
-
-      // Disruption 2 — Client cancellation on route 2, stop index 2
-      const d2a = fade(380, 300);
-      if (d2a > 0) {
-        const r2 = origRoutes[2];
-        const cStop = r2.stops[2];
-        // Fading stop: shrink and gray out
-        const shrink = 1 - d2a * 0.4;
-        ctx.save(); ctx.globalAlpha = 0.8 * mapA;
-        // Gray replacement dot
-        ctx.beginPath(); ctx.arc(cStop.x, cStop.y, 6*shrink+7, 0, Math.PI*2);
-        ctx.fillStyle = '#8B7FA3'; ctx.globalAlpha = d2a * 0.15; ctx.fill();
-        ctx.beginPath(); ctx.arc(cStop.x, cStop.y, 6*shrink, 0, Math.PI*2);
-        ctx.fillStyle = lerpColor('#F59E0B', '#8B7FA3', d2a);
-        ctx.globalAlpha = 0.9 * mapA; ctx.fill();
-        // Red X over the stop
-        ctx.globalAlpha = d2a;
-        ctx.strokeStyle = '#7C3AED'; ctx.lineWidth = 2.5; ctx.lineCap = 'round';
-        const xsz = 8;
-        ctx.beginPath(); ctx.moveTo(cStop.x-xsz, cStop.y-xsz); ctx.lineTo(cStop.x+xsz, cStop.y+xsz); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(cStop.x+xsz, cStop.y-xsz); ctx.lineTo(cStop.x-xsz, cStop.y+xsz); ctx.stroke();
-        ctx.restore();
-      }
-
-      // Disruption 3 — Truck breakdown on route 3
-      const d3a = fade(560, 300);
-      if (d3a > 0) {
-        const r3 = origRoutes[3];
-        const pt = lerp(r3.wp, r3.pos);
-        // Red truck dot (replaces normal truck)
-        ctx.save();
-        ctx.beginPath(); ctx.arc(pt.x, pt.y, 10, 0, Math.PI*2);
-        ctx.fillStyle = '#7C3AED'; ctx.globalAlpha = 0.2 * d3a; ctx.fill();
-        ctx.beginPath(); ctx.arc(pt.x, pt.y, 5, 0, Math.PI*2);
-        ctx.fillStyle = lerpColor(r3.color, '#7C3AED', d3a);
-        ctx.globalAlpha = mapA; ctx.fill();
-        // Warning triangle
-        ctx.globalAlpha = d3a;
-        ctx.font = '600 16px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-        ctx.fillStyle = '#7C3AED';
-        ctx.fillText('\u26A0', pt.x + 16, pt.y - 14);
-        // Dashed downstream route
-        const totalSegs = r3.wp.length - 1;
-        const curSeg = Math.min(Math.floor(r3.pos * totalSegs), totalSegs - 1);
-        ctx.strokeStyle = r3.color; ctx.globalAlpha = d3a * 0.35;
-        ctx.lineWidth = 2; ctx.setLineDash([6, 8]); ctx.lineCap = 'round';
-        ctx.beginPath(); ctx.moveTo(pt.x, pt.y);
-        for (let j = curSeg + 1; j < r3.wp.length; j++) ctx.lineTo(r3.wp[j].x, r3.wp[j].y);
-        ctx.stroke(); ctx.setLineDash([]);
-        ctx.restore();
-      }
-      // Also draw route 3 truck normally when no disruption yet
-      if (d3a <= 0) smallTrk(origRoutes[3], mapA);
-    }
-
-    // ── Phase 2: EDITING — zone + bike/truck reassignment ──
-    if (pi === 2) {
-      // Zone circle fades in
-      const zoneA = fade(0, 600);
-      if (zoneA > 0) {
-        ctx.save();
-        ctx.beginPath(); ctx.arc(CCX, CCY, CENTER_R, 0, Math.PI*2);
-        ctx.setLineDash([8,6]); ctx.lineDashOffset = -now*0.015;
-        ctx.strokeStyle = '#A78BFA'; ctx.lineWidth = 2; ctx.globalAlpha = zoneA * 0.4;
-        ctx.stroke(); ctx.setLineDash([]);
-        ctx.restore();
-      }
-
-      // Original routes dim out
-      const dimA = Math.max(0.05, 0.45 * (1 - Math.min(1, phaseAge / 2000) * 0.7));
-      origRoutes.forEach(r => {
-        adv(r, dt);
-        if (dimA > 0.05) ln(r, dimA, 1.5);
-      });
-
-      // Manual truck routes draw in
-      truckRoutes.forEach((r, i) => {
-        const rA = fade(1200 + i * 300, 600);
-        if (rA <= 0) return;
-        adv(r, dt);
-        ln(r, rA * 0.5, 2);
-        r.stops.forEach((s, si) => stp(s, si, r.color, rA));
-        smallTrk(r);
-      });
-
-      // Bike route for center stops
-      const bikeA = fade(1200 + truckRoutes.length * 300, 600);
-      if (bikeA > 0) {
-        adv(bikeRoute, dt);
-        ln(bikeRoute, bikeA * 0.55, 1.5);
-        bikeRoute.stops.forEach((s, si) => stp(s, si, '#f59e0b', bikeA));
-        // Bike icon (diamond)
-        const bpt = lerp(bikeRoute.wp, bikeRoute.pos);
-        ctx.save();
-        ctx.beginPath(); ctx.arc(bpt.x, bpt.y, 12, 0, Math.PI*2);
-        ctx.fillStyle = '#f59e0b'; ctx.globalAlpha = 0.18 * bikeA; ctx.fill();
-        ctx.beginPath(); ctx.moveTo(bpt.x, bpt.y-6); ctx.lineTo(bpt.x+5, bpt.y); ctx.lineTo(bpt.x, bpt.y+6); ctx.lineTo(bpt.x-5, bpt.y); ctx.closePath();
-        ctx.fillStyle = '#f59e0b'; ctx.globalAlpha = bikeA; ctx.fill();
-        ctx.restore();
-      }
-    }
-
-    // ── Bottom label (phases 0–2) ──
-    if (pi <= 2) {
-      const grad = ctx.createLinearGradient(0, H*0.62, 0, H);
-      grad.addColorStop(0, 'rgba(253,252,251,0)');
-      grad.addColorStop(0.4, 'rgba(253,252,251,0.85)');
-      grad.addColorStop(1, 'rgba(253,252,251,0.97)');
-      ctx.save(); ctx.fillStyle = grad; ctx.fillRect(0, H*0.62, W, H*0.38); ctx.restore();
-
-      const labels = [
-        ['ROUTE PLANNING', '#4B3F5E', '32 stops. 5 vehicles.', 'The planner starts the day.'],
-        ['VRP SOFTWARE',   '#7C3AED', 'The software generates routes.', '5 trucks. 32 stops. Optimized. Looks good.'],
-        ['EVERY MORNING',  '#A78BFA', 'Then the planner starts adjusting.', 'Every. Single. Day.'],
-      ];
-      const lb = labels[pi];
-      const x = 52, baseY = H - 44;
-      ctx.save();
-      ctx.font = '700 13px Outfit,sans-serif'; ctx.textAlign = 'left';
-      ctx.fillStyle = lb[1]; ctx.globalAlpha = 0.9;
-      ctx.fillText(lb[0], x, baseY - 58);
-      ctx.font = '800 36px Outfit,sans-serif'; ctx.fillStyle = '#1A1025'; ctx.globalAlpha = 1;
-      ctx.fillText(lb[2], x, baseY - 20);
-      ctx.font = '400 17px DM Sans,sans-serif'; ctx.fillStyle = '#4B3F5E'; ctx.globalAlpha = 0.9;
-      ctx.fillText(lb[3], x, baseY + 4);
-      ctx.restore();
-    }
-
-    // ── Phase 3: PROBLEMS PANEL ──
-    if (pi === 3) {
-      const problems = [
-        ['Generic algorithm',          'Every company gets the same algo — while operations differ wildly.'],
-        ['Long dev cycles',            'Customizing the algorithm takes months of development time.'],
-        ['~45 min wasted daily',       'Planners create routes, react to events, and make suboptimal decisions. Every day.'],
-      ];
-
-      // Right-side panel background
-      const panelX = 660, panelA = fade(0, 300);
-      ctx.save(); ctx.globalAlpha = panelA * 0.92;
-      const pg = ctx.createLinearGradient(panelX, 0, W, 0);
-      pg.addColorStop(0, 'rgba(253,252,251,0)');
-      pg.addColorStop(0.18, 'rgba(253,252,251,0.97)');
-      pg.addColorStop(1, 'rgba(253,252,251,0.97)');
-      ctx.fillStyle = pg; ctx.fillRect(panelX, 0, W - panelX, H);
-      ctx.restore();
-
-      // Panel header
-      ctx.save(); ctx.globalAlpha = fade(0, 400);
-      ctx.font = '700 13px Outfit,sans-serif'; ctx.textAlign = 'left';
-      ctx.fillStyle = '#7C3AED';
-      ctx.fillText('THE PROBLEM', 740, 168);
-      ctx.font = '800 30px Outfit,sans-serif'; ctx.fillStyle = '#1A1025';
-      ctx.fillText('Why this keeps happening:', 740, 202);
-      ctx.restore();
-
-      problems.forEach(([title, desc], i) => {
-        const a = fade(200 + i * 180, 350);
-        if (a <= 0) return;
-        const py = 258 + i * 130;
-
-        ctx.save(); ctx.globalAlpha = a;
-
-        // Icon
-        const xi = 740, yi = py + 2;
-        if (i < 2) {
-          ctx.strokeStyle = '#7C3AED'; ctx.lineWidth = 2.5; ctx.lineCap = 'round';
-          const sz = 7;
-          ctx.beginPath(); ctx.moveTo(xi-sz, yi-sz); ctx.lineTo(xi+sz, yi+sz); ctx.stroke();
-          ctx.beginPath(); ctx.moveTo(xi+sz, yi-sz); ctx.lineTo(xi-sz, yi+sz); ctx.stroke();
-        } else {
-          ctx.strokeStyle = '#A78BFA'; ctx.lineWidth = 2.5; ctx.lineCap = 'round';
-          ctx.beginPath(); ctx.moveTo(xi-7, yi); ctx.lineTo(xi+7, yi); ctx.stroke();
-          ctx.beginPath(); ctx.moveTo(xi+2, yi-5); ctx.lineTo(xi+7, yi); ctx.lineTo(xi+2, yi+5); ctx.stroke();
-        }
-
-        // Title
-        ctx.font = '700 21px Outfit,sans-serif'; ctx.fillStyle = '#1A1025';
-        ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
-        ctx.fillText(title, 764, py + 8);
-
-        // Description
-        ctx.font = '400 15px DM Sans,sans-serif'; ctx.fillStyle = '#4B3F5E';
-        ctx.fillText(desc, 764, py + 30);
-
-        ctx.restore();
-      });
-    }
-  }
-
-  // Color lerp helper
-  function lerpColor(a, b, t) {
-    const pa = [parseInt(a.slice(1,3),16),parseInt(a.slice(3,5),16),parseInt(a.slice(5,7),16)];
-    const pb = [parseInt(b.slice(1,3),16),parseInt(b.slice(3,5),16),parseInt(b.slice(5,7),16)];
-    const r = Math.round(pa[0]+(pb[0]-pa[0])*t), g = Math.round(pa[1]+(pb[1]-pa[1])*t), bl = Math.round(pa[2]+(pb[2]-pa[2])*t);
-    return `rgb(${r},${g},${bl})`;
-  }
-
-  // ── Single canvas, fragment-driven phases ──
-  const canvas = document.getElementById('mapCanvas');
-  const ctxMain = canvas.getContext('2d');
-  const phases = ['points', 'routes', 'center', 'manual', 'problems'];
-  let activePhase = 'points';
-  let phaseStart = performance.now();
-
-  function setPhase(p) {
-    if (p !== activePhase) { activePhase = p; phaseStart = performance.now(); }
-  }
-
-  Reveal.on('slidechanged', (e) => {
-    if (e.currentSlide.dataset.phase === 'map') setPhase('points');
-  });
-
-  Reveal.on('fragmentshown', (e) => {
-    const step = e.fragment.dataset.step;
-    if (step) setPhase(step);
-  });
-
-  Reveal.on('fragmenthidden', (e) => {
-    const step = e.fragment.dataset.step;
-    if (step === 'problems') setPhase('manual');
-    else if (step === 'manual') setPhase('center');
-    else if (step === 'center') setPhase('routes');
-    else if (step === 'routes') setPhase('points');
-  });
-
-
-  function drawSolution_STUB() {
-
-    // Grid
-    ctx.save(); ctx.strokeStyle = 'rgba(0,0,0,0.04)'; ctx.lineWidth = 1;
-    for (let x = 0; x < W; x += 55) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
-    for (let y = 0; y < H; y += 55) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
-    ctx.restore();
-
-    // Edge fade
-    const edgeSize = 80, bgCol = 'rgba(253,252,251,';
-    ctx.save();
-    let g = ctx.createLinearGradient(0,0,0,edgeSize);
-    g.addColorStop(0, bgCol+'1)'); g.addColorStop(1, bgCol+'0)');
-    ctx.fillStyle = g; ctx.fillRect(0,0,W,edgeSize);
-    g = ctx.createLinearGradient(0,H-edgeSize,0,H);
-    g.addColorStop(0, bgCol+'0)'); g.addColorStop(1, bgCol+'1)');
-    ctx.fillStyle = g; ctx.fillRect(0,H-edgeSize,W,edgeSize);
-    g = ctx.createLinearGradient(0,0,edgeSize,0);
-    g.addColorStop(0, bgCol+'1)'); g.addColorStop(1, bgCol+'0)');
-    ctx.fillStyle = g; ctx.fillRect(0,0,edgeSize,H);
-    g = ctx.createLinearGradient(W-edgeSize,0,W,0);
-    g.addColorStop(0, bgCol+'0)'); g.addColorStop(1, bgCol+'1)');
-    ctx.fillStyle = g; ctx.fillRect(W-edgeSize,0,edgeSize,H);
-    ctx.restore();
-
-    const fade = (start, dur) => Math.min(1, Math.max(0, (pAge - start) / dur));
-    const green = '#059669';
-
-    // Drawing helpers
-    function sLine(r, a, w, col) {
-      ctx.save(); ctx.strokeStyle = col || r.color; ctx.globalAlpha = a; ctx.lineWidth = w * 1.5;
-      ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-      ctx.beginPath(); ctx.moveTo(r.wp[0].x, r.wp[0].y);
-      for (let j = 1; j < r.wp.length; j++) ctx.lineTo(r.wp[j].x, r.wp[j].y);
-      ctx.stroke(); ctx.restore();
-    }
-    function sPartial(r, prog, a, w, col) {
-      if (prog <= 0) return;
-      const pts = r.wp, n = pts.length - 1, d = prog * n;
-      ctx.save(); ctx.strokeStyle = col || r.color; ctx.globalAlpha = a; ctx.lineWidth = w * 1.5;
-      ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-      ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y);
-      for (let j = 1; j <= Math.ceil(d) && j < pts.length; j++) {
-        if (j <= Math.floor(d)) ctx.lineTo(pts[j].x, pts[j].y);
-        else { const f = d - Math.floor(d), pv = pts[j-1]; ctx.lineTo(pv.x + (pts[j].x - pv.x)*f, pv.y + (pts[j].y - pv.y)*f); }
-      }
-      ctx.stroke(); ctx.restore();
-    }
-    function sDot(x, y, col, r, a) {
-      ctx.save();
-      ctx.beginPath(); ctx.arc(x, y, r + 7, 0, Math.PI*2); ctx.fillStyle = col; ctx.globalAlpha = a*0.12; ctx.fill();
-      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2); ctx.fillStyle = col; ctx.globalAlpha = a*0.9; ctx.fill();
-      ctx.restore();
-    }
-    function sStop(s, i, col, a) {
-      sDot(s.x, s.y, col, 6, a);
-      ctx.save(); ctx.font = '600 10px Outfit,sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.fillStyle = '#FDFCFB'; ctx.globalAlpha = a * 0.95; ctx.fillText(i + 1, s.x, s.y + 0.5); ctx.restore();
-    }
-    function sHub(col) {
-      const p = 1 + Math.sin(now*0.003)*0.12;
-      ctx.save();
-      ctx.beginPath(); ctx.arc(CX, CY, 34*p, 0, Math.PI*2); ctx.fillStyle = col; ctx.globalAlpha = 0.08; ctx.fill();
-      ctx.beginPath(); ctx.arc(CX, CY, 22, 0, Math.PI*2); ctx.fillStyle = col; ctx.globalAlpha = 0.85; ctx.fill();
-      ctx.beginPath(); ctx.arc(CX, CY, 16, 0, Math.PI*2); ctx.fillStyle = '#FDFCFB'; ctx.globalAlpha = 0.9; ctx.fill();
-      ctx.beginPath(); ctx.arc(CX, CY, 6, 0, Math.PI*2); ctx.fillStyle = col; ctx.globalAlpha = 1; ctx.fill();
-      ctx.restore();
-    }
-    function sTruck(r, col) {
-      const pt = lerp(r.wp, r.pos);
-      ctx.save();
-      ctx.beginPath(); ctx.arc(pt.x, pt.y, 10, 0, Math.PI*2); ctx.fillStyle = col; ctx.globalAlpha = 0.15; ctx.fill();
-      ctx.beginPath(); ctx.arc(pt.x, pt.y, 5, 0, Math.PI*2); ctx.fillStyle = col; ctx.globalAlpha = 1; ctx.fill();
-      ctx.restore();
-    }
-    function sBike(r) {
-      const bpt = lerp(r.wp, r.pos);
-      ctx.save();
-      ctx.beginPath(); ctx.arc(bpt.x, bpt.y, 12, 0, Math.PI*2);
-      ctx.fillStyle = '#f59e0b'; ctx.globalAlpha = 0.18; ctx.fill();
-      ctx.beginPath(); ctx.moveTo(bpt.x, bpt.y-6); ctx.lineTo(bpt.x+5, bpt.y); ctx.lineTo(bpt.x, bpt.y+6); ctx.lineTo(bpt.x-5, bpt.y); ctx.closePath();
-      ctx.fillStyle = '#f59e0b'; ctx.globalAlpha = 1; ctx.fill();
-      ctx.restore();
-    }
-
-    const prefs = [
-      { text: '"No trucks in the city center"', color: '#A78BFA', icon: '\u{1F6AB}' },
-      { text: '"Driver Mike \u2192 industrial zone"', color: '#7C3AED', icon: '\u{1F464}' },
-      { text: '"Mrs. Peters not before 11 AM"', color: '#A78BFA', icon: '\u{1F550}' },
-    ];
-    const outerR = origRoutes.filter(r => !r.stops.some(s => inC(s)));
-    const centerR = origRoutes.filter(r => r.stops.some(s => inC(s)));
-
-    // Zone circle (all stages)
-    const zoneA = stage === 0 ? fade(400, 600) : 1;
-    if (zoneA > 0) {
-      ctx.save();
-      ctx.beginPath(); ctx.arc(CCX, CCY, CENTER_R, 0, Math.PI*2);
-      ctx.setLineDash([8,6]); ctx.lineDashOffset = -now*0.015;
-      ctx.strokeStyle = '#A78BFA'; ctx.lineWidth = 2; ctx.globalAlpha = zoneA * 0.4;
-      ctx.stroke(); ctx.setLineDash([]);
-      ctx.restore();
-    }
-
-    // ═══ STEP 0: Baseline routes ═══
-    if (stage === 0) {
-      const drawAge = age; // use age from slide entry for initial draw-in
-      origRoutes.forEach((r, i) => {
-        const rElapsed = drawAge - i * 300;
-        const prog = rElapsed < 0 ? 0 : Math.min(1, rElapsed / 800);
-        if (prog <= 0) return;
-        adv(r, 0.016);
-        sPartial(r, prog, 0.45, 2);
-        r.stops.forEach((s, si) => {
-          const st = (si+1) / r.stops.length;
-          if (prog >= st * 0.7) sStop(s, si, r.color, Math.min(1, (prog - st*0.7) / 0.3));
-        });
-        if (prog > 0.4) sTruck(r, r.color);
-      });
-    }
-
-    // ═══ STEP 1: Preferences appear, routes adapt ═══
-    if (stage === 1) {
-      // Original routes dim out
-      const adaptT = Math.min(1, pAge / 2000);
-      origRoutes.forEach(r => {
-        adv(r, 0.016);
-        const dim = 0.45 * (1 - adaptT * 0.7);
-        if (dim > 0.05) sLine(r, dim, 1.5);
-      });
-
-      // Preference cards
-      prefs.forEach((p, i) => {
-        const pA = fade(200 + i * 400, 500);
-        if (pA <= 0) return;
-        const px = W - 280, py = 100 + i * 70;
-        ctx.save(); ctx.globalAlpha = pA;
-        ctx.beginPath(); ctx.roundRect(px - 10, py - 18, 270, 42, 8);
-        ctx.fillStyle = 'rgba(255,255,255,0.95)'; ctx.fill();
-        ctx.strokeStyle = p.color; ctx.lineWidth = 1.5; ctx.globalAlpha = pA * 0.35; ctx.stroke();
-        ctx.globalAlpha = pA;
-        ctx.font = '400 15px DM Sans,sans-serif'; ctx.textAlign = 'left'; ctx.fillStyle = '#1A1025';
-        ctx.fillText(p.icon + '  ' + p.text, px + 4, py + 5);
-        ctx.restore();
-
-        const lineA = fade(600 + i * 400, 400);
-        if (lineA > 0) {
-          ctx.save(); ctx.globalAlpha = lineA * 0.3;
-          ctx.setLineDash([4,6]); ctx.lineDashOffset = -now * 0.01;
-          ctx.strokeStyle = p.color; ctx.lineWidth = 1.5;
-          ctx.beginPath(); ctx.moveTo(px - 10, py); ctx.lineTo(CX + 100, py + 60);
-          ctx.stroke(); ctx.setLineDash([]);
-          ctx.restore();
-        }
-      });
-
-      // Adapted routes go green
-      outerR.forEach((r, i) => {
-        const rA = fade(1200 + i * 300, 600);
-        if (rA <= 0) return;
-        sLine(r, rA * 0.5, 2, green);
-        r.stops.forEach((s, si) => sStop(s, si, green, rA));
-        sTruck({...r, pos: r.pos}, green);
-      });
-
-      // Bike route
-      const bikeA = fade(1200 + outerR.length * 300, 600);
-      if (bikeA > 0) {
-        adv(bikeRoute, 0.016);
-        sLine(bikeRoute, bikeA * 0.55, 1.5, '#f59e0b');
-        bikeRoute.stops.forEach((s, si) => sStop(s, si, '#f59e0b', bikeA));
-        sBike(bikeRoute);
-      }
-
-      // Center routes re-routed green
-      centerR.forEach((r, i) => {
-        const rA = fade(1800 + i * 300, 600);
-        if (rA <= 0) return;
-        sLine(r, rA * 0.35, 1.5, green);
-        r.stops.filter(s => !inC(s)).forEach((s, si) => sStop(s, si, green, rA * 0.8));
-        sTruck({...r, pos: r.pos}, green);
-      });
-    }
-
-    // ═══ STEP 2: "Software remembers" — same prefs, different stops each day ═══
-    if (stage === 2) {
-      // Cycle through "days" — different delivery points each time, same constraints applied
-      const cycleDur = 2500; // ms per day
-      const dayIdx = Math.floor(pAge / cycleDur) % 3;
-      const dayT = (pAge % cycleDur) / cycleDur; // 0→1 within each day
-      const drawT = Math.min(1, dayT * 3); // routes draw in first third
-      const holdT = dayT; // full visibility
-
-      const dayLabels = ['Monday', 'Wednesday', 'Friday'];
-
-      // Generate pseudo-random stops per day (seeded by dayIdx)
-      function seededStops(day) {
-        // Different stop positions for each day, all outside center zone
-        const sets = [
-          // Monday
-          [
-            [{x:CX+160,y:CY-100},{x:CX+250,y:CY-50},{x:CX+200,y:CY-150}],
-            [{x:CX-170,y:CY-80},{x:CX-230,y:CY-40},{x:CX-280,y:CY-110}],
-            [{x:CX+180,y:CY+80},{x:CX+240,y:CY+150},{x:CX+150,y:CY+180}],
-          ],
-          // Wednesday
-          [
-            [{x:CX+200,y:CY-70},{x:CX+280,y:CY-100},{x:CX+180,y:CY-160}],
-            [{x:CX-150,y:CY+60},{x:CX-200,y:CY+120},{x:CX-260,y:CY+80}],
-            [{x:CX-100,y:CY-110},{x:CX-180,y:CY-140},{x:CX-140,y:CY-60}],
-          ],
-          // Friday
-          [
-            [{x:CX+140,y:CY+50},{x:CX+220,y:CY+100},{x:CX+300,y:CY+60}],
-            [{x:CX-180,y:CY-60},{x:CX-250,y:CY+20},{x:CX-200,y:CY-130}],
-            [{x:CX+170,y:CY-90},{x:CX+260,y:CY-140},{x:CX+190,y:CY-40}],
-          ],
-        ];
-        return sets[day];
-      }
-      // Center stops (bike) vary per day too
-      const bikeSets = [
-        [{x:CCX-30,y:CCY+40},{x:CCX+25,y:CCY-15},{x:CCX-10,y:CCY-35}],
-        [{x:CCX+35,y:CCY+20},{x:CCX-20,y:CCY+45},{x:CCX+15,y:CCY-25}],
-        [{x:CCX-25,y:CCY-20},{x:CCX+30,y:CCY+35},{x:CCX-15,y:CCY+10}],
-      ];
-
-      const dayStops = seededStops(dayIdx);
-      const dayBike = bikeSets[dayIdx];
-      const routeColors = ['#7C3AED', '#A78BFA', '#5B21B6'];
-      const crossfadeIn = Math.min(1, dayT * 5); // quick fade in
-      const crossfadeOut = dayT > 0.85 ? 1 - (dayT - 0.85) / 0.15 : 1; // fade out last 15%
-      const alpha = crossfadeIn * crossfadeOut;
-
-      // Day label (top-right)
-      ctx.save(); ctx.globalAlpha = alpha;
-      ctx.font = '700 16px Outfit,sans-serif'; ctx.textAlign = 'right'; ctx.fillStyle = green;
-      ctx.fillText(dayLabels[dayIdx], W - 50, 40);
-      ctx.font = '400 13px DM Sans,sans-serif'; ctx.fillStyle = '#8B7FA3';
-      ctx.fillText('New stops, same preferences', W - 50, 60);
-      ctx.restore();
-
-      // Draw truck routes
-      dayStops.forEach((stops, ri) => {
-        const col = routeColors[ri];
-        const prog = Math.min(1, Math.max(0, drawT - ri * 0.15) / 0.7);
-        if (prog <= 0) return;
-
-        // Build waypoints from hub
-        const wp = [{x:CX,y:CY}];
-        let prev = {x:CX,y:CY};
-        stops.forEach(s => {
-          if (Math.abs(s.x-prev.x) > Math.abs(s.y-prev.y)) wp.push({x:s.x,y:prev.y});
-          else wp.push({x:prev.x,y:s.y});
-          wp.push(s); prev = s;
-        });
-
-        // Draw partial route
-        const n = wp.length - 1, d = prog * n;
-        ctx.save(); ctx.strokeStyle = col; ctx.globalAlpha = alpha * 0.5; ctx.lineWidth = 3;
-        ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-        ctx.beginPath(); ctx.moveTo(wp[0].x, wp[0].y);
-        for (let j = 1; j <= Math.ceil(d) && j < wp.length; j++) {
-          if (j <= Math.floor(d)) ctx.lineTo(wp[j].x, wp[j].y);
-          else { const f = d - Math.floor(d), pv = wp[j-1]; ctx.lineTo(pv.x + (wp[j].x - pv.x)*f, pv.y + (wp[j].y - pv.y)*f); }
-        }
-        ctx.stroke(); ctx.restore();
-
-        // Stops
-        stops.forEach((s, si) => {
-          const st = (si+1) / stops.length;
-          if (prog >= st * 0.6) {
-            const sa = Math.min(1, (prog - st*0.6) / 0.3) * alpha;
-            sDot(s.x, s.y, col, 5, sa);
-          }
-        });
-
-        // Truck dot
-        if (prog > 0.3) {
-          const tPos = Math.min(prog, 0.95);
-          const td = tPos * n, tSeg = Math.min(Math.floor(td), n-1), tf = td - tSeg;
-          const tx = wp[tSeg].x + (wp[tSeg+1].x - wp[tSeg].x) * tf;
-          const ty = wp[tSeg].y + (wp[tSeg+1].y - wp[tSeg].y) * tf;
-          ctx.save();
-          ctx.beginPath(); ctx.arc(tx, ty, 8, 0, Math.PI*2); ctx.fillStyle = col; ctx.globalAlpha = alpha * 0.15; ctx.fill();
-          ctx.beginPath(); ctx.arc(tx, ty, 4, 0, Math.PI*2); ctx.fillStyle = col; ctx.globalAlpha = alpha; ctx.fill();
-          ctx.restore();
-        }
-      });
-
-      // Bike route for center stops
-      const bikeProg = Math.min(1, Math.max(0, drawT - 0.4) / 0.6);
-      if (bikeProg > 0) {
-        const bwp = [{x:CX,y:CY}];
-        let prev = {x:CX,y:CY};
-        dayBike.forEach(s => {
-          if (Math.abs(s.x-prev.x) > Math.abs(s.y-prev.y)) bwp.push({x:s.x,y:prev.y});
-          else bwp.push({x:prev.x,y:s.y});
-          bwp.push(s); prev = s;
-        });
-        const bn = bwp.length - 1, bd = bikeProg * bn;
-        ctx.save(); ctx.strokeStyle = '#f59e0b'; ctx.globalAlpha = alpha * 0.55; ctx.lineWidth = 2.5;
-        ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-        ctx.beginPath(); ctx.moveTo(bwp[0].x, bwp[0].y);
-        for (let j = 1; j <= Math.ceil(bd) && j < bwp.length; j++) {
-          if (j <= Math.floor(bd)) ctx.lineTo(bwp[j].x, bwp[j].y);
-          else { const f = bd - Math.floor(bd), pv = bwp[j-1]; ctx.lineTo(pv.x + (bwp[j].x - pv.x)*f, pv.y + (bwp[j].y - pv.y)*f); }
-        }
-        ctx.stroke(); ctx.restore();
-        dayBike.forEach((s, si) => {
-          const st = (si+1) / dayBike.length;
-          if (bikeProg >= st * 0.6) sDot(s.x, s.y, '#f59e0b', 5, Math.min(1, (bikeProg - st*0.6) / 0.3) * alpha);
-        });
-        // Bike icon
-        if (bikeProg > 0.3) {
-          const lastB = dayBike[Math.min(Math.floor(bikeProg * (dayBike.length-1)), dayBike.length-1)];
-          ctx.save();
-          ctx.beginPath(); ctx.arc(lastB.x, lastB.y, 10, 0, Math.PI*2);
-          ctx.fillStyle = '#f59e0b'; ctx.globalAlpha = alpha * 0.18; ctx.fill();
-          ctx.beginPath(); ctx.moveTo(lastB.x, lastB.y-5); ctx.lineTo(lastB.x+4, lastB.y); ctx.lineTo(lastB.x, lastB.y+5); ctx.lineTo(lastB.x-4, lastB.y); ctx.closePath();
-          ctx.fillStyle = '#f59e0b'; ctx.globalAlpha = alpha; ctx.fill();
-          ctx.restore();
-        }
-      }
-
-      // Preferences badge (top-left, persistent)
-      const badgeA = fade(0, 500);
-      if (badgeA > 0) {
-        ctx.save(); ctx.globalAlpha = badgeA * 0.85;
-        ctx.beginPath(); ctx.roundRect(30, 26, 260, 110, 10);
-        ctx.fillStyle = 'rgba(255,255,255,0.95)'; ctx.fill();
-        ctx.strokeStyle = 'rgba(22,163,106,0.2)'; ctx.lineWidth = 1; ctx.stroke();
-
-        ctx.font = '600 12px Outfit,sans-serif'; ctx.textAlign = 'left'; ctx.fillStyle = green;
-        ctx.fillText('Preferences (remembered)', 48, 48);
-
-        ctx.font = '400 12px DM Sans,sans-serif'; ctx.fillStyle = '#4B3F5E';
-        prefs.forEach((p, i) => {
-          ctx.save(); ctx.globalAlpha = badgeA * 0.85;
-          // Checkmark
-          ctx.strokeStyle = green; ctx.lineWidth = 1.5; ctx.lineCap = 'round';
-          const cy2 = 68 + i * 22;
-          ctx.beginPath(); ctx.moveTo(50, cy2); ctx.lineTo(53, cy2 + 3); ctx.lineTo(58, cy2 - 3); ctx.stroke();
-          ctx.fillStyle = '#4B3F5E';
-          ctx.fillText(p.text.replace(/"/g, ''), 64, cy2 + 4);
-          ctx.restore();
-        });
-        ctx.restore();
-      }
-    }
-
-    // Hub
-    sHub(stage >= 1 ? green : '#7C3AED');
-
-    // ── Bottom text ──
-    const grad2 = ctx.createLinearGradient(0, H*0.7, 0, H);
-    grad2.addColorStop(0, 'rgba(253,252,251,0)');
-    grad2.addColorStop(0.3, 'rgba(253,252,251,0.85)');
-    grad2.addColorStop(1, 'rgba(253,252,251,0.97)');
-    ctx.save(); ctx.fillStyle = grad2; ctx.fillRect(0, H*0.7, W, H*0.3); ctx.restore();
-
-    const stageTexts = [
-      ['Our solution', green, 'Start with a baseline algorithm.', 'Optimized routes that work from day one.'],
-      ['Our solution', green, 'Add your preferences.', 'The algorithm adapts the routes in real time.'],
-      ['Our solution', green, 'The software remembers.', 'Every preference is learned \u2014 routes get better automatically.'],
-    ];
-    const stTxt = stageTexts[stage];
-    const txtA = fade(stage === 0 ? 500 : 400, 700);
-    if (txtA > 0) {
-      ctx.save(); ctx.textAlign = 'center'; ctx.globalAlpha = txtA;
-      ctx.font = '800 14px Outfit,sans-serif'; ctx.fillStyle = stTxt[1];
-      ctx.fillText(stTxt[0], W/2, H - 100);
-      ctx.font = '600 28px Outfit,sans-serif'; ctx.fillStyle = '#1A1025';
-      ctx.fillText(stTxt[2], W/2, H - 68);
-      ctx.font = '400 18px DM Sans,sans-serif'; ctx.fillStyle = '#4B3F5E'; ctx.globalAlpha = txtA * 0.8;
-      ctx.fillText(stTxt[3], W/2, H - 40);
-      ctx.restore();
-    }
-  }
-
-  // ── Main loop ──
-  let last = performance.now();
-  function loop(now) {
-    const dt = (now - last) / 1000;
-    last = now;
-    const phaseAge = now - phaseStart;
-    drawMap(ctxMain, activePhase, now, dt, phaseAge);
-
-    requestAnimationFrame(loop);
-  }
-  requestAnimationFrame(loop);
-
-  // ── Solution mini-canvas: 3 route variations ──
-  (function() {
-    const cv = document.getElementById('solutionMiniCanvas');
-    if (!cv) return;
-    const c = cv.getContext('2d');
-    const W = 480, H = 300;
-    const cols = ['#059669','#7C3AED','#F59E0B'];
-    const labels = ['Parcel delivery','Bike courier','Catering'];
-
-    // Shared stop positions (same points for all 3)
-    const stops = [
-      {x:40,y:50},{x:75,y:25},{x:55,y:80},
-      {x:25,y:70},{x:80,y:60},{x:60,y:40},
-      {x:30,y:35},{x:70,y:75}
-    ];
-
-    // Different route orderings per company
-    const orders = [
-      [0,1,5,4,7,2,3,6],  // parcel: cluster by area
-      [0,6,1,5,3,2,7,4],  // bike: different path through center
-      [0,3,6,1,5,4,7,2],  // catering: time-window driven
-    ];
-
-    function drawMini() {
-      c.clearRect(0,0,W,H);
-
-      for (let v = 0; v < 3; v++) {
-        const ox = v * 160 + 8;
-        const oy = 0;
-        const sw = 144, sh = 240;
-        const col = cols[v];
-
-        // Card bg
-        c.save();
-        c.beginPath(); c.roundRect(ox, oy, sw, sh, 10);
-        c.fillStyle = '#fff'; c.fill();
-        c.strokeStyle = '#E6E1DC'; c.lineWidth = 1; c.stroke();
-        c.restore();
-
-        // Label
-        c.save();
-        c.font = '600 11px Outfit,sans-serif';
-        c.textAlign = 'center'; c.fillStyle = col;
-        c.fillText(labels[v], ox + sw/2, oy + 20);
-        c.restore();
-
-        // Hub
-        const hx = ox + sw/2, hy = oy + 55;
-        c.save();
-        c.beginPath(); c.arc(hx, hy, 6, 0, Math.PI*2);
-        c.fillStyle = col; c.globalAlpha = 0.15; c.fill();
-        c.beginPath(); c.arc(hx, hy, 3, 0, Math.PI*2);
-        c.fillStyle = col; c.globalAlpha = 1; c.fill();
-        c.restore();
-
-        // Scale stops into card
-        const order = orders[v];
-        const pts = order.map(i => ({
-          x: ox + 16 + (stops[i].x / 100) * (sw - 32),
-          y: oy + 70 + (stops[i].y / 100) * (sh - 90)
-        }));
-
-        // Route lines from hub
-        c.save();
-        c.strokeStyle = col; c.globalAlpha = 0.35; c.lineWidth = 1.5;
-        c.lineJoin = 'round'; c.lineCap = 'round';
-        c.beginPath(); c.moveTo(hx, hy);
-        pts.forEach(p => c.lineTo(p.x, p.y));
-        c.stroke();
-        c.restore();
-
-        // Stop dots
-        pts.forEach((p, i) => {
-          c.save();
-          c.beginPath(); c.arc(p.x, p.y, 4, 0, Math.PI*2);
-          c.fillStyle = col; c.globalAlpha = 0.7; c.fill();
-          c.restore();
-        });
-      }
-
-      // Bottom label
-      c.save();
-      c.font = '400 12px DM Sans,sans-serif';
-      c.textAlign = 'center'; c.fillStyle = '#8B7FA3';
-      c.fillText('Same stops. Different algorithm. Different routes.', W/2, H - 16);
-      c.restore();
-    }
-
-    drawMini();
-    Reveal.on('slidechanged', drawMini);
-  })();
-})();
 </script>
 </body>
 </html>
