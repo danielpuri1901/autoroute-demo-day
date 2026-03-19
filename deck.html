@@ -142,23 +142,42 @@
 
     <!-- 6. MARKET -->
     <section data-background-color="#FDFCFB">
-      <div class="slide-body">
-        <h2 style="margin-top:20px; margin-bottom:0;">Market</h2>
-        <div style="display:flex; flex-direction:column; gap:16px; margin-top:40px; max-width:680px;">
-          <div style="display:flex; align-items:center; gap:20px;">
-            <div style="width:160px; height:52px; border-radius:10px; background:var(--purple); display:flex; align-items:center; padding-left:20px; font-family:Outfit,sans-serif; font-weight:700; font-size:1.5rem; color:#fff; flex-shrink:0;">EUR 500K</div>
-            <div style="font-size:1.5rem; color:var(--body); white-space:nowrap;">Noord-Holland &nbsp;·&nbsp; starting here</div>
-          </div>
-          <div style="display:flex; align-items:center; gap:20px;">
-            <div style="width:340px; height:52px; border-radius:10px; background:var(--purple-50); border:1px solid rgba(124,58,237,0.25); display:flex; align-items:center; padding-left:20px; font-family:Outfit,sans-serif; font-weight:700; font-size:1.5rem; color:var(--purple); flex-shrink:0;">EUR 3&ndash;6M</div>
-            <div style="font-size:1.5rem; color:var(--body); white-space:nowrap;">Netherlands &nbsp;·&nbsp; ~1,000 multi-vehicle SMEs</div>
-          </div>
-          <div style="display:flex; align-items:center; gap:20px;">
-            <div style="width:580px; height:52px; border-radius:10px; background:var(--purple-50); border:1px solid rgba(124,58,237,0.15); display:flex; align-items:center; padding-left:20px; font-family:Outfit,sans-serif; font-weight:700; font-size:1.5rem; color:var(--purple-light); flex-shrink:0;">$1.3B+ &nbsp;(14% CAGR)</div>
-            <div style="font-size:1.5rem; color:var(--body); white-space:nowrap;">Europe &nbsp;·&nbsp; route optimization for SME logistics</div>
-          </div>
+      <div class="slide-body" style="align-items:center;">
+        <h2 style="margin-top:20px; margin-bottom:24px;">Market</h2>
+        <div style="display:flex; align-items:center; gap:0;">
+          <svg width="860" height="420" viewBox="0 0 860 420">
+            <!-- Centered concentric circles -->
+            <circle cx="200" cy="210" r="190" fill="var(--purple-50)" stroke="rgba(124,58,237,0.15)" stroke-width="1.5"/>
+            <circle cx="200" cy="210" r="130" fill="var(--purple-100)" stroke="rgba(124,58,237,0.25)" stroke-width="1.5"/>
+            <circle cx="200" cy="210" r="65" fill="var(--purple)"/>
+
+            <!-- Labels inside circles -->
+            <text x="200" y="42" text-anchor="middle" font-family="Outfit,sans-serif" font-size="22" font-weight="800" fill="#A78BFA">TAM</text>
+            <text x="200" y="102" text-anchor="middle" font-family="Outfit,sans-serif" font-size="22" font-weight="800" fill="#7C3AED">SAM</text>
+            <text x="200" y="217" text-anchor="middle" font-family="Outfit,sans-serif" font-size="22" font-weight="800" fill="#fff">SOM</text>
+
+            <!-- Dots at right edge of text + horizontal lines to descriptions -->
+            <circle cx="232" cy="38" r="4" fill="#A78BFA"/>
+            <line x1="236" y1="38" x2="490" y2="38" stroke="#A78BFA" stroke-width="1.5"/>
+
+            <circle cx="232" cy="98" r="4" fill="#7C3AED"/>
+            <line x1="236" y1="98" x2="490" y2="98" stroke="#7C3AED" stroke-width="1.5"/>
+
+            <circle cx="236" cy="213" r="4" fill="#fff"/>
+            <line x1="240" y1="213" x2="490" y2="213" stroke="#7C3AED" stroke-width="1.5"/>
+
+            <!-- Right-side descriptions -->
+            <text x="505" y="45" font-family="Outfit,sans-serif" font-size="26" font-weight="800" fill="#A78BFA">&euro;1.2B</text>
+            <text x="505" y="67" font-family="DM Sans,sans-serif" font-size="15" fill="#8B7FA3">European SME route optimization</text>
+
+            <text x="505" y="105" font-family="Outfit,sans-serif" font-size="26" font-weight="800" fill="#7C3AED">&euro;120M</text>
+            <text x="505" y="127" font-family="DM Sans,sans-serif" font-size="15" fill="#4B3F5E">Netherlands &amp; DACH</text>
+
+            <text x="505" y="220" font-family="Outfit,sans-serif" font-size="26" font-weight="800" fill="#1A1025">&euro;5M</text>
+            <text x="505" y="242" font-family="DM Sans,sans-serif" font-size="15" fill="#4B3F5E">Noord-Holland &middot; starting here</text>
+          </svg>
         </div>
-        <p style="font-size:1.3rem; color:var(--muted); margin-top:28px;">EUR 29 / vehicle / month</p>
+        <p style="font-size:1.3rem; color:var(--muted); margin-top:28px;">&euro;30 / vehicle / month</p>
       </div>
     </section>
 
