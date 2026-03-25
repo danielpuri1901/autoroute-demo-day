@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoRoute — Team</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --purple: #7C3AED;
+      --purple-light: #A78BFA;
+      --purple-dark: #5B21B6;
+      --purple-50: #F5F3FF;
+      --purple-100: #EDE9FE;
+      --text: #1A1025;
+      --body: #4B3F5E;
+      --muted: #8B7FA3;
+      --bg: #FDFCFB;
+      --border: #E6E1DC;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 24px;
+    }
+
+    .container {
+      display: flex;
+      gap: 28px;
+      max-width: 960px;
+      width: 100%;
+    }
+
+    .brand-card {
+      flex: 1;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(26,16,37,0.06);
+      padding: 32px 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .brand-card img.avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 16px;
+    }
+
+    .name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .role {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--purple);
+      margin-bottom: 18px;
+    }
+
+    .bio {
+      font-size: 1rem;
+      color: var(--body);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    .logo {
+      height: 32px;
+      object-fit: contain;
+      opacity: 0.7;
+      margin-bottom: 20px;
+    }
+
+    .qr {
+      width: 160px;
+      height: 160px;
+      border-radius: 12px;
+      border: 2px solid var(--border);
+      margin-top: auto;
+    }
+
+    .qr-label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="brand-card">
+      <img class="avatar" src="ferchtandiker.jpg" alt="Nathan Ferchtandiker">
+      <div class="name">Nathan Ferchtandiker</div>
+      <div class="role">Optimization &amp; Data Science</div>
+      <div class="bio">
+        Route optimization research at Stanford<br>
+        MSc Data Science
+      </div>
+      <img class="logo" src="stanford.png" alt="Stanford">
+      <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://www.linkedin.com/in/nathan-ferchtandiker-0768481ab/" alt="Nathan LinkedIn QR">
+      <div class="qr-label">LinkedIn</div>
+    </div>
+    <div class="brand-card">
+      <img class="avatar" src="puri.jpg" alt="Daniel Puri">
+      <div class="name">Daniel Puri</div>
+      <div class="role">Product &amp; Engineering</div>
+      <div class="bio">
+        Scaled 3 startups to 26,000+ users<br>
+        BSc Business Admin
+      </div>
+      <img class="logo" src="arcelormittal.jpeg" alt="ArcelorMittal">
+      <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://www.linkedin.com/in/danielpuri/" alt="Daniel LinkedIn QR">
+      <div class="qr-label">LinkedIn</div>
+    </div>
+  </div>
+</body>
+</html>
